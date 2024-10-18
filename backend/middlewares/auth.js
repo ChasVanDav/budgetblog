@@ -14,6 +14,7 @@ const authenticateJWT = (req, res, next) => {
     } else {
         res.sendStatus(401);
     }
+
 };
 
 module.exports = authenticateJWT;
