@@ -15,18 +15,19 @@ const registerUser = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10); // 10 is the "salt rounds" for added security.
 
         // This SQL query adds a new user to the 'users' table in the database.
-        const result = await db.query(
-            'INSERT INTO users (username, email, password, home_country, home_city, home_currency) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+        await db.query(
+            'INSERT INTO users (username, email, password, home_country, home_city, home_currency) VALUES ($1, $2, $3, $4, $5, $6)',
             [username, email, hashedPassword, home_country, home_city, home_currency]
         );
 
-        // Once the user is registered, we send back a message and the user's information.
-        res.status(201).json({ message: 'User registered', user: result.rows[0] });
+        // Once the user is registered, we send back a success message without any sensitive info.
+        res.status(201).json({ message: 'User registered successfully' });
     } catch (err) {
         // If something goes wrong, we send back an error.
         res.status(500).json({ error: 'Registration failed', details: err });
     }
 };
+
 
 // This function logs a user in.
 const loginUser = async (req, res) => {
