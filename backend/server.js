@@ -10,7 +10,7 @@ const app = express();
 app.use(cors()); 
 app.use(express.json()); 
 
-//route to get all users
+//route to get all from local postgres database 'budgetblog' table 'users'
 app.get('/users', async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM users');
@@ -20,6 +20,7 @@ app.get('/users', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
 
 // Start the server
 const PORT = process.env.PORT || 4000; 
