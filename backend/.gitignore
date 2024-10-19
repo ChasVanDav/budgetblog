@@ -1,3 +1,2 @@
 .env
-node_nodules/
-node_nodules
+node_modules/
