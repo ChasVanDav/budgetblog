@@ -2,12 +2,16 @@ const db = require('../db/db');
 const bcrypt = require('bcrypt'); 
 const jwt = require('jsonwebtoken'); 
 
-
 //----register a new user----//
 const registerUser = async (req, res) => {
     const { username, email, password, home_country, home_city, home_currency } = req.body;
     
     try {
+        const existingUser = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+        if (existingUser.rows.length > 0) {
+            return res.status(400).json({ error: 'User already exists with this email.' });
+        }
+
         const hashedPassword = await bcrypt.hash(password, 10);
 
         await db.query(
@@ -17,10 +21,10 @@ const registerUser = async (req, res) => {
 
         res.status(201).json({ message: 'User registered successfully' });
     } catch (err) {
-        res.status(500).json({ error: 'Registration failed', details: err });
+        console.error(err); 
+        res.status(500).json({ error: 'Registration failed', details: err.message });
     }
 };
-
 
 //----login an existing user----//
 const loginUser = async (req, res) => {
@@ -45,14 +49,15 @@ const loginUser = async (req, res) => {
 
         res.json({ message: 'Login successful', token });
     } catch (err) {
-        res.status(500).json({ error: 'Login failed', details: err });
+        console.error(err);
+        res.status(500).json({ error: 'Login failed', details: err.message });
     }
 };
 
 //----get user profile----after login//
 const getUserProfile = async (req, res) => {
-    const userId = req.userId; 
-    
+    const userId = req.userId;
+
     try {
         const result = await db.query('SELECT * FROM users WHERE user_id = $1', [userId]);
 
@@ -62,9 +67,9 @@ const getUserProfile = async (req, res) => {
 
         res.json(result.rows[0]);
     } catch (err) {
-        res.status(500).json({ error: 'Failed to fetch user profile', details: err });
+        console.error(err);
+        res.status(500).json({ error: 'Failed to fetch user profile', details: err.message });
     }
 };
 
-module.exports = { registerUser, loginUser, getUserProfile }; 
-
+module.exports = { registerUser, loginUser, getUserProfile };
