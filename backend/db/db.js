@@ -8,5 +8,4 @@ const pool = new Pool({
     database: "budgetblog"
 });
 
-// Exporting the pool to be used for database queries in other parts of the app.
 module.exports = pool;
