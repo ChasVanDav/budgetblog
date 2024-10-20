@@ -3,55 +3,23 @@ const express = require('express');
 const cors = require('cors'); 
 const dotenv = require('dotenv'); 
 const pool = require('./db');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const userRoutes = require('./routes/users');
+
 dotenv.config(); 
 const app = express(); 
 app.use(cors()); 
 app.use(express.json()); 
 
-
-//----user routes----//
-app.get('/users', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM users');
-    res.status(200).json(result.rows);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ error: 'Internal server error' });
-  }
+app.get('/', (req, res) => {
+  res.send(`Hello from Vanessa's server`);
 });
 
-app.get('/trips', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM trips');
-    res.status(200).json(result.rows);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
+//---- Use User Routes ----//
+app.use('/users', userRoutes);
 
-app.get('/budget', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM budgets');
-    res.status(200).json(result.rows);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
-
-app.get('/spending', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM spendings');
-    res.status(200).json(result.rows);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
-
-//----weather api----//
-
+//---- Weather API ----//
 const wApiToken = process.env.WEATHER_API_TOKEN;
 
 app.get('/api/weather', (req, res) => {
@@ -63,9 +31,8 @@ app.get('/api/weather', (req, res) => {
         .catch(error => res.status(500).send({ error: 'Oh no! Something went wrong!' }));
 });
 
-
-//----start server----//
-const PORT = process.env.PORT || 3000; 
+//---- Start Server ----//
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Vanessa's Server is running on port ${PORT}`); 
 });

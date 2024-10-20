@@ -1,16 +1,20 @@
 //USER ROUTES
 const express = require('express');
-const { registerUser, loginUser, getUserProfile } = require('../controllers/userController');
+const { registerUser, loginUser, getUserProfile, deleteUser } = require('../controllers/userController');
 const router = express.Router();
+const authenticateJWT = require('../middlewares/auth');
 
-//route for user registration
+
+
 router.post('/register', registerUser);
 
-//route for user login
+
 router.post('/login', loginUser);
 
-//route for getting the user profile
-router.get('/profile', getUserProfile); 
+
+router.get('/profile', authenticateJWT, getUserProfile); 
+
+router.delete('/delete', authenticateJWT, deleteUser);
 
 
 module.exports = router; 
