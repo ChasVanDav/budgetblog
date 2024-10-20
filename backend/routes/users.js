@@ -1,14 +1,13 @@
 //USER ROUTES
-
-const express = require('express');// use express to create routes.
-const { registerUser, loginUser, getUserProfile } = require('../controllers/userController'); //import the functions from the controller.
+const express = require('express');
+const { registerUser, loginUser, getUserProfile } = require('../controllers/userController');
 const router = express.Router();
 
 //route for user registration
-router.post('/register', registerUser); //registerUser function from the controller.
+router.post('/register', registerUser);
 
 //route for user login
-router.post('/login', loginUser); // When a user logs in, it calls the loginUser function from the controller.
+router.post('/login', loginUser);
 
 //route for getting the user profile
 router.get('/profile', getUserProfile); 
