@@ -6,7 +6,10 @@ require('dotenv').config();
 
 // Using the database connection string from the .env file.
 const pool = new Pool({
-    connectionString: process.env.DATABASEURI
+    user: "tpl1522_14",
+    host: "localhost",
+    port: "5432",
+    database: "bugetblog"
 });
 
 // Exporting the pool to be used for database queries in other parts of the app.
