@@ -3,10 +3,40 @@ const express = require('express');
 const cors = require('cors'); 
 const dotenv = require('dotenv'); 
 const pool = require('./db');
+const jwt = require('jsonwebtoken');
 dotenv.config(); 
 const app = express(); 
 app.use(cors()); 
 app.use(express.json()); 
+
+
+app.get('/', (req, res) => {
+  res.send(`hello from Vanessa's server`);
+});
+
+//----jwt auth----for user login//
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  const result = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+  const user = result.rows[0];
+  console.log(user);
+
+  if (!user) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+  }
+
+
+  if (user.password !== password) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+  }
+
+  // Generate JWT 
+  const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+  res.json({ message: 'Login successful', token });
+});
+
 
 
 //----user routes----//
