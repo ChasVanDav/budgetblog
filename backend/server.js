@@ -1,18 +1,15 @@
+//----dependencies & configuration----//
 const express = require('express'); 
 const cors = require('cors'); 
 const dotenv = require('dotenv'); 
 const pool = require('./db');
-
 dotenv.config(); 
 const app = express(); 
 app.use(cors()); 
 app.use(express.json()); 
 
 
-const userRoutes = require('./routes/users'); 
-app.use('/api/users', userRoutes); 
-
-
+//----user routes----//
 app.get('/users', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM users');
@@ -53,8 +50,22 @@ app.get('/spending', async (req, res) => {
   }
 });
 
+//----weather api----//
+
+const wApiToken = process.env.WEATHER_API_TOKEN;
+
+app.get('/api/weather', (req, res) => {
+    const cityName = req.query.city || 'Honolulu';
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${wApiToken}&units=imperial`)
+        .then(response => response.json())
+        .then(data => res.send(data))
+        .catch(error => res.status(500).send({ error: 'Oh no! Something went wrong!' }));
+});
+
+
+//----start server----//
 const PORT = process.env.PORT || 3000; 
 app.listen(PORT, () => {
   console.log(`Vanessa's Server is running on port ${PORT}`); 
 });
-
