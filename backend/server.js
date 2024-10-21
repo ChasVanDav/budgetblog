@@ -6,6 +6,7 @@ const pool = require('./db');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const userRoutes = require('./routes/users');
+const tripRoutes = require('./routes/trips');
 
 dotenv.config(); 
 const app = express(); 
@@ -16,8 +17,9 @@ app.get('/', (req, res) => {
   res.send(`Hello from Vanessa's server`);
 });
 
-//---- Use User Routes ----//
+//---- Routes ----//
 app.use('/users', userRoutes);
+app.use('/trips', tripRoutes);
 
 //---- Weather API ----//
 const wApiToken = process.env.WEATHER_API_TOKEN;
