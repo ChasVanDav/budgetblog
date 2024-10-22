@@ -20,6 +20,8 @@ app.get('/', (req, res) => {
 //---- Routes ----//
 app.use('/users', userRoutes);
 app.use('/trips', tripRoutes);
+app.use('/budgets, budgetRoutes);
+app.use('/spendings, spendingRoutes);
 
 //---- Weather API ----//
 const wApiToken = process.env.WEATHER_API_TOKEN;

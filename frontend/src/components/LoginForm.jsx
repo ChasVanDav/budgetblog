@@ -1,43 +1,31 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const LoginForm = ({ onClose }) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+const LoginForm = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('http://localhost:4000/api/users/login', { email, password });            console.log(response.data);
-        } catch (error) {
-            console.error('Login failed', error);
-        }
-        onClose();
-    };
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('/api/login', { email, password });
+      localStorage.setItem('token', response.data.token); //store and use jwt
+      navigate('/profile');
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+  };
 
-    return (
-        <div className="modal">
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <button type="submit">Login</button>
-                <button type="button" onClick={onClose}>Close</button>
-            </form>
-        </div>
-    );
+  return (
+    <form onSubmit={handleLogin}>
+      <h2>Login</h2>
+      <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+      <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+      <button type="submit">Login</button>
+    </form>
+  );
 };
 
 export default LoginForm;
