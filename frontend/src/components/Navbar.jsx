@@ -1,28 +1,42 @@
-// src/components/Navbar.jsx
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Navbar = ({ onLogin, onRegister }) => {
+const Navbar = ({ currentTripDestination }) => {
+    const [isWeatherModalOpen, setWeatherModalOpen] = useState(false);
+    const token = localStorage.getItem('token');
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/login'); // Redirect to login after logout
+    };
+
+    const openWeatherModal = () => {
+        if (!currentTripDestination) {
+            alert("Please set a trip destination to get the weather.");
+            return;
+        }
+        setWeatherModalOpen(true);
+    };
+
     return (
         <nav>
-            <h1>Budget Blog</h1>
-            <ul>
-                <li>
+            <Link to="/">Home</Link>
+            {token ? (
+                <>
                     <Link to="/profile">Profile</Link>
-                </li>
-                <li>
-                    <Link to="/budget">Budget</Link>
-                </li>
-                <li>
-                    <Link to="/spending">Spending</Link>
-                </li>
-                <li>
-                    <button onClick={onLogin}>Login</button>
-                </li>
-                <li>
-                    <button onClick={onRegister}>Register</button>
-                </li>
-            </ul>
+                    <Link to="/budgets">Budgets</Link>
+                    <Link to="/spendings">Spendings</Link>
+                    
+                    <button onClick={openWeatherModal}>Get Weather</button>
+                    <button onClick={handleLogout}>Logout</button>
+                </>
+            ) : (
+                <>
+                    <Link to="/login">Login</Link>
+                    <Link to="/register">Register</Link>
+                </>
+            )}
         </nav>
     );
 };
