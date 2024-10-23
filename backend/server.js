@@ -7,6 +7,9 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const userRoutes = require('./routes/users');
 const tripRoutes = require('./routes/trips');
+const budgetRoutes = require('./routes/budgetRoutes');
+const spendingRoutes = require('./routes/spendingRoutes');
+
 const fetch = require('node-fetch');
 
 dotenv.config(); 
@@ -21,8 +24,8 @@ app.get('/', (req, res) => {
 //---- Routes ----//
 app.use('/users', userRoutes);
 app.use('/trips', tripRoutes);
-app.use('/budgets, budgetRoutes);
-app.use('/spendings, spendingRoutes);
+app.use('/budgets', budgetRoutes);
+app.use('/spendings', spendingRoutes);
 
 //---- Weather API ----//
 const wApiToken = process.env.WEATHER_API_TOKEN;
@@ -38,8 +41,6 @@ app.get('/api/weather', (req, res) => {
 
 //----Currency API ----//
 const apiKey = process.env.EXCHANGE_API_KEY; 
-//to add to .env
-EXCHANGE_API_KEY=83b58b3ac660ad10016ed25199de89
 
 app.get('/currency/convert', async (req, res) => {
     const { from, to, amount } = req.query;
