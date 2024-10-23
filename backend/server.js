@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const userRoutes = require('./routes/users');
 const tripRoutes = require('./routes/trips');
+const fetch = require('node-fetch');
 
 dotenv.config(); 
 const app = express(); 
@@ -33,6 +34,32 @@ app.get('/api/weather', (req, res) => {
         .then(response => response.json())
         .then(data => res.send(data))
         .catch(error => res.status(500).send({ error: 'Oh no! Something went wrong!' }));
+});
+
+//----Currency API ----//
+const apiKey = process.env.EXCHANGE_API_KEY; 
+//to add to .env
+EXCHANGE_API_KEY=83b58b3ac660ad10016ed25199de89
+
+app.get('/currency/convert', async (req, res) => {
+    const { from, to, amount } = req.query;
+
+    if (!from || !to || !amount) {
+        return res.status(400).send({ error: 'Please complete from, to, and amount fields.' });
+    }
+
+    try {
+        const response = await fetch(`http://api.exchangeratesapi.io/v1/convert?access_key=${apiKey}&from=${from}&to=${to}&amount=${amount}`);
+        const data = await response.json();
+
+        if (data.success) {
+            res.send(data);
+        } else {
+            res.status(400).send({ error: data.error });
+        }
+    } catch (error) {
+        res.status(500).send({ error: 'Oh no! Something went wrong with the currency conversion!' });
+    }
 });
 
 //---- Start Server ----//
