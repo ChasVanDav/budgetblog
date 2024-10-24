@@ -2,13 +2,10 @@
 const express = require('express'); 
 const cors = require('cors'); 
 const dotenv = require('dotenv'); 
-const pool = require('./db');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
 const userRoutes = require('./routes/users');
 const tripRoutes = require('./routes/trips');
-const budgetRoutes = require('./routes/budgetRoutes');
-const spendingRoutes = require('./routes/spendingRoutes');
+const budgetRoutes = require('./routes/budgets');
+const spendingRoutes = require('./routes/spendings');
 
 const fetch = require('node-fetch');
 
@@ -42,7 +39,7 @@ app.get('/api/weather', (req, res) => {
 //----Currency API ----//
 const apiKey = process.env.EXCHANGE_API_KEY; 
 
-app.get('/currency/convert', async (req, res) => {
+app.get('/api/currency', async (req, res) => {
     const { from, to, amount } = req.query;
 
     if (!from || !to || !amount) {
