@@ -6,16 +6,16 @@ services:
     buildCommand: npm install
     startCommand: npm start
     envVars:
-        - key: DB_USER
-    value: budgetblog_user  
-  - key: DB_PASSWORD
-    value: WH9XP7JmGdnwrEW60InZ5yAAQdDSPlDy  
-  - key: DB_HOST
-    value: dpg-csd9e89u0jms73b91sv0-a  
-  - key: DB_PORT
-    value: 5432 
-  - key: DB_NAME
-    value: budgetblog
+      - key: DB_USER
+        value: budgetblog_user  
+      - key: DB_PASSWORD
+        value: WH9XP7JmGdnwrEW60InZ5yAAQdDSPlDy  
+      - key: DB_HOST
+        value: dpg-csd9e89u0jms73b91sv0-a  
+      - key: DB_PORT
+        value: 5432 
+      - key: DB_NAME
+        value: budgetblog
       - key: JWT_SECRET
         value: ilovetechtonica
       - key: WEATHER_API_TOKEN
@@ -54,3 +54,4 @@ databases:
     plan: free  
     version: 16 
     diskSizeGB: 1  
+
