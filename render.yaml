@@ -23,7 +23,7 @@ services:
       - key: NODE_ENV
         value: production
     repo: https://github.com/ChasVanDav/budgetblog 
-    branch: main 
+    branch: local-setup
     autoDeploy: true
     healthCheckPath: /healthcheck  
     regions:
@@ -41,7 +41,7 @@ services:
       - key: REACT_APP_API_URL
         value: https://budget-backend.onrender.com 
     repo: https://github.com/ChasVanDav/budgetblog 
-    branch: main  
+    branch: local-setup  
     autoDeploy: true
     regions:
       - oregon  
