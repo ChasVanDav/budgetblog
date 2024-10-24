@@ -14,7 +14,7 @@ const RegistrationForm = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/register', {
+      await axios.post('/users/register', {
         username,
         email,
         password,
@@ -22,7 +22,7 @@ const RegistrationForm = () => {
         home_city: homeCity,
         home_currency: homeCurrency,
       });
-      navigate('/login'); //go to login page after registration
+      navigate('/login');
     } catch (error) {
       console.error('Registration failed:', error);
     }

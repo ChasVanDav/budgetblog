@@ -8,7 +8,7 @@ const SpendingContainer = () => {
     const fetchSpendings = async () => {
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.get('/api/spendings', {
+        const response = await axios.get('/spendings/spending', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setSpendings(response.data);
