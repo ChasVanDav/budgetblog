@@ -54,4 +54,3 @@ databases:
     plan: free  
     version: 16 
     diskSizeGB: 1  
-
