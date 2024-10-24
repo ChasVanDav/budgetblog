@@ -10,9 +10,14 @@ const LoginForm = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/login', { email, password });
-      localStorage.setItem('token', response.data.token); //store and use jwt
-      navigate('/profile');
+      const response = await axios.post('/users/login', { email, password });
+      console.log('Login response:', response);
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token); 
+        navigate('/profile');
+      } else {
+        console.error('No token received');
+      }
     } catch (error) {
       console.error('Login failed:', error);
     }

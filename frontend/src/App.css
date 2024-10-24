@@ -1,42 +1,90 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+/* General App layout */
+.app-container {
+  background-color: #f0f8ff; /* Light sky blue background */
+  color: #333; /* Soft dark text color */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Arial', sans-serif;
+}
+
+.navbar {
+  width: 100%;
+  background-color: #e6e6fa; /* Lavender */
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #333; /* Soft text color */
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  color: #1e90ff; /* Skyblue on hover */
+}
+
+.navbar button {
+  background-color: #1e90ff; /* Sky blue */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar button:hover {
+  background-color: #87cefa; /* Light sky blue on hover */
+}
+
+.content {
   padding: 2rem;
-  text-align: center;
+  background-color: #ffffff; /* White background for content */
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  margin: 2rem auto;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Input styling */
+input, select {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+input:focus, select:focus {
+  border-color: #1e90ff; /* Sky blue border on focus */
+  outline: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .content {
+    width: 95%;
   }
-  to {
-    transform: rotate(360deg);
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
   }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .navbar a {
+    margin-right: 0;
+    margin-bottom: 10px;
   }
-}
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  .navbar button {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
 }

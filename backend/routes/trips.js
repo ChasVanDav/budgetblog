@@ -5,12 +5,12 @@ const authenticateJWT = require('../middlewares/auth');
 const router = express.Router();
 
 
-router.post('/trip', authenticateJWT, createTrip);
+router.post('/create', authenticateJWT, createTrip);
 
-router.get('/trip', authenticateJWT, getUserTrips);
+router.get('/view', authenticateJWT, getUserTrips);
 
-router.put('/trip/:tripId', authenticateJWT, updateTrip);
+router.put('/view/:tripId', authenticateJWT, updateTrip);
 
-router.delete('/trip/:tripId', authenticateJWT, deleteTrip);
+router.delete('/view/:tripId', authenticateJWT, deleteTrip);
 
 module.exports = router;
