@@ -19,15 +19,15 @@ app.use(cors());
 app.use(express.json()); 
 
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirName = dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirName = dirname(__filename);
 
-const REACT_DIST_DIR = path.join(__dirName, '..', 'frontend/dist')
+// const REACT_DIST_DIR = path.join(__dirName, '..', 'frontend/dist')
 
-app.use(express.static(REACT_DIST_DIR));
-app.get('*', (req, res) => {
-    res.sendFile(path.join(REACT_DIST_DIR, 'index.html'));
-});
+// app.use(express.static(REACT_DIST_DIR));
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(REACT_DIST_DIR, 'index.html'));
+// });
 
 // app.get('/', (req, res) => {
 //   res.send(`Hello from Vanessa's server`);
