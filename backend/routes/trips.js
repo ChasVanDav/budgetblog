@@ -1,6 +1,6 @@
-const express = require('express');
-const { createTrip, getUserTrips, updateTrip, deleteTrip } = require('../controllers/tripController');
-const authenticateJWT = require('../middlewares/auth');
+import express from 'express';
+import { createTrip, getUserTrips, updateTrip, deleteTrip } from '../controllers/tripController.js';
+import authenticateJWT from '../middlewares/auth.js';
 
 const router = express.Router();
 
@@ -13,4 +13,4 @@ router.put('/view/:tripId', authenticateJWT, updateTrip);
 
 router.delete('/view/:tripId', authenticateJWT, deleteTrip);
 
-module.exports = router;
+export default router; 

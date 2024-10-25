@@ -1,22 +1,37 @@
 //----dependencies & configuration----//
-const express = require('express'); 
-const cors = require('cors'); 
-const dotenv = require('dotenv'); 
-const userRoutes = require('./routes/users');
-const tripRoutes = require('./routes/trips');
-const budgetRoutes = require('./routes/budgets');
-const spendingRoutes = require('./routes/spendings');
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv'; 
 
-const fetch = require('node-fetch');
+import path, {dirname} from 'path';
+import { fileURLToPath } from 'url';
+
+import userRoutes from './routes/users.js';
+import tripRoutes from './routes/trips.js';
+import budgetRoutes from './routes/budgets.js';
+import spendingRoutes from './routes/spendings.js';
+
+import fetch from 'node-fetch';
 
 dotenv.config(); 
 const app = express(); 
 app.use(cors()); 
 app.use(express.json()); 
 
-app.get('/', (req, res) => {
-  res.send(`Hello from Vanessa's server`);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirName = dirname(__filename);
+
+const REACT_DIST_DIR = path.join(__dirName, '..', 'frontend/dist')
+
+app.use(express.static(REACT_DIST_DIR));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(REACT_DIST_DIR, 'index.html'));
 });
+
+// app.get('/', (req, res) => {
+//   res.send(`Hello from Vanessa's server`);
+// });
 
 //---- Routes ----//
 app.use('/users', userRoutes);

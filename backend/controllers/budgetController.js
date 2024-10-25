@@ -1,7 +1,7 @@
-const db = require('../db/db');
+import db from '../db/db.js';
 
 //----create a new budget for a trip----//
-const createBudget = async (req, res) => {
+export const createBudget = async (req, res) => {
     const { trip_id, destination_country, budget_date, place_name, starting_amount, new_amount, category, currency, notes, location, star_rating } = req.body;
 
     try {
@@ -18,7 +18,7 @@ const createBudget = async (req, res) => {
 };
 
 //----get all budgets for a specific trip----//
-const getBudgetsByTrip = async (req, res) => {
+export const getBudgetsByTrip = async (req, res) => {
     const { tripId } = req.params;
 
     try {
@@ -36,7 +36,7 @@ const getBudgetsByTrip = async (req, res) => {
 };
 
 //----update a specific budget----//
-const updateBudget = async (req, res) => {
+export const updateBudget = async (req, res) => {
     const { budgetId } = req.params;
     const { place_name, starting_amount, new_amount, category, currency, notes, location, star_rating } = req.body;
 
@@ -58,7 +58,7 @@ const updateBudget = async (req, res) => {
 };
 
 //----delete a specific budget----//
-const deleteBudget = async (req, res) => {
+export const deleteBudget = async (req, res) => {
     const { budgetId } = req.params;
 
     try {
@@ -75,4 +75,4 @@ const deleteBudget = async (req, res) => {
     }
 };
 
-module.exports = { createBudget, getBudgetsByTrip, updateBudget, deleteBudget };
+// module.exports = { createBudget, getBudgetsByTrip, updateBudget, deleteBudget };

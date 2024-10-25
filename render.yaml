@@ -1,0 +1,56 @@
+services:
+  - name: budget-backend
+    type: web
+    env: node
+    plan: free  
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+        - key: DB_USER
+    value: budgetblog_user  
+  - key: DB_PASSWORD
+    value: WH9XP7JmGdnwrEW60InZ5yAAQdDSPlDy  
+  - key: DB_HOST
+    value: dpg-csd9e89u0jms73b91sv0-a  
+  - key: DB_PORT
+    value: 5432 
+  - key: DB_NAME
+    value: budgetblog
+      - key: JWT_SECRET
+        value: ilovetechtonica
+      - key: WEATHER_API_TOKEN
+        value: 2a4b9240693bc44d971fbf9becc24fef
+      - key: EXCHANGE_API_KEY
+        value: 83b58b3ac660ad10016ed25199de89
+      - key: NODE_ENV
+        value: production
+    repo: https://github.com/ChasVanDav/budgetblog 
+    branch: local-setup
+    autoDeploy: true
+    healthCheckPath: /healthcheck  
+    regions:
+      - oregon  
+    disk:
+      name: data
+      mountPath: /data  
+      sizeGB: 1  
+
+  - name: budget-frontend
+    type: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://budget-backend.onrender.com 
+    repo: https://github.com/ChasVanDav/budgetblog 
+    branch: local-setup  
+    autoDeploy: true
+    regions:
+      - oregon  
+
+databases:
+  - name: budgetblog  
+    engine: postgres
+    plan: free  
+    version: 16 
+    diskSizeGB: 1  
