@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Navbar = ({ currentTripDestination }) => {
+const Navbar = ({ currentTripDestination, setToken, token }) => {
     const [isWeatherModalOpen, setWeatherModalOpen] = useState(false);
-    const token = localStorage.getItem('token');
     const navigate = useNavigate();
 
     const handleLogout = () => {
         localStorage.removeItem('token');
+        setToken();
         navigate('/login'); // Redirect to login after logout
     };
 
