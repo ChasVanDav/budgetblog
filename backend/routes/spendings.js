@@ -1,6 +1,6 @@
-const express = require('express');
-const { createSpending, getSpendingsByBudget, updateSpending, deleteSpending } = require('../controllers/spendingController.js');
-const authenticateJWT = require('../middlewares/auth');
+import express from 'express';
+import { createSpending, getSpendingsByBudget, updateSpending, deleteSpending } from '../controllers/spendingController.js';
+import authenticateJWT from '../middlewares/auth.js';
 
 const router = express.Router();
 
@@ -12,4 +12,4 @@ router.put('/spending/:spendId', authenticateJWT, updateSpending);
 
 router.delete('/spending/:spendId', authenticateJWT, deleteSpending);
 
-module.exports = router;
+export default router; 

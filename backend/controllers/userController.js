@@ -1,9 +1,9 @@
-const db = require('../db/db'); 
-const bcrypt = require('bcrypt'); 
-const jwt = require('jsonwebtoken'); 
+import db from '../db/db.js'; 
+import bcrypt from 'bcrypt'; 
+import jwt from 'jsonwebtoken'; 
 
 //----register a new user----//
-const registerUser = async (req, res) => {
+export const registerUser = async (req, res) => {
     const { username, email, password, home_country, home_city, home_currency } = req.body;
     
     try {
@@ -27,7 +27,7 @@ const registerUser = async (req, res) => {
 };
 
 //----login an existing user----//
-const loginUser = async (req, res) => {
+export const loginUser = async (req, res) => {
     const { email, password } = req.body; 
     
     try {
@@ -55,7 +55,7 @@ const loginUser = async (req, res) => {
 };
 
 //----get user profile----after login//
-const getUserProfile = async (req, res) => {
+export const getUserProfile = async (req, res) => {
     const userId = req.userId;
     console.log('User ID from JWT:', userId);
 
@@ -77,7 +77,7 @@ const getUserProfile = async (req, res) => {
 };
 
 //----delete a user----//
-const deleteUser = async (req, res) => {
+export const deleteUser = async (req, res) => {
     const userId = req.userId;
 
     try {
@@ -94,4 +94,4 @@ const deleteUser = async (req, res) => {
     }
 };
 
-module.exports = { registerUser, loginUser, getUserProfile, deleteUser };
+// module.exports = { registerUser, loginUser, getUserProfile };

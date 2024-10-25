@@ -1,7 +1,7 @@
-const db = require('../db/db');
+import db from '../db/db.js';
 
 //----create a new trip----//
-const createTrip = async (req, res) => {
+export const createTrip = async (req, res) => {
     const userId = req.userId;
     const { destination_country, destination_city, arrival_date, departure_date } = req.body;
 
@@ -19,7 +19,7 @@ const createTrip = async (req, res) => {
 };
 
 //----get all trips----//
-const getUserTrips = async (req, res) => {
+export const getUserTrips = async (req, res) => {
     const userId = req.userId; 
 
     try {
@@ -37,7 +37,7 @@ const getUserTrips = async (req, res) => {
 };
 
 //----update a specific trip----//
-const updateTrip = async (req, res) => {
+export const updateTrip = async (req, res) => {
     const userId = req.userId;
     const { tripId } = req.params;
     const { destination_country, destination_city, arrival_date, departure_date } = req.body;
@@ -60,7 +60,7 @@ const updateTrip = async (req, res) => {
 };
 
 //----delete a specific trip----//
-const deleteTrip = async (req, res) => {
+export const deleteTrip = async (req, res) => {
     const userId = req.userId; 
     const { tripId } = req.params;
 
@@ -78,4 +78,4 @@ const deleteTrip = async (req, res) => {
     }
 };
 
-module.exports = { createTrip, getUserTrips, updateTrip, deleteTrip };
+// module.exports = { createTrip, getUserTrips, updateTrip, deleteTrip };

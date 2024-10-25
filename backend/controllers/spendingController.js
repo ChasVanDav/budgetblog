@@ -1,7 +1,7 @@
-const db = require('../db/db');
+import db from '../db/db.js';
 
 //----create a new spending for a budget----//
-const createSpending = async (req, res) => {
+export const createSpending = async (req, res) => {
     const { budget_id, category, amount, note, photo } = req.body;
 
     try {
@@ -18,7 +18,7 @@ const createSpending = async (req, res) => {
 };
 
 //----get all spendings for a specific budget----//
-const getSpendingsByBudget = async (req, res) => {
+export const getSpendingsByBudget = async (req, res) => {
     const { budgetId } = req.params;
 
     try {
@@ -36,7 +36,7 @@ const getSpendingsByBudget = async (req, res) => {
 };
 
 //----update a specific spending----//
-const updateSpending = async (req, res) => {
+export const updateSpending = async (req, res) => {
     const { spendId } = req.params;
     const { category, amount, note, photo } = req.body;
 
@@ -58,7 +58,7 @@ const updateSpending = async (req, res) => {
 };
 
 //----delete a specific spending----//
-const deleteSpending = async (req, res) => {
+export const deleteSpending = async (req, res) => {
     const { spendId } = req.params;
 
     try {
@@ -75,4 +75,4 @@ const deleteSpending = async (req, res) => {
     }
 };
 
-module.exports = { createSpending, getSpendingsByBudget, updateSpending, deleteSpending };
+// module.exports = { createSpending, getSpendingsByBudget, updateSpending, deleteSpending };
