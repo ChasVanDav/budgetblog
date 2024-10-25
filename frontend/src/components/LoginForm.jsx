@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const LoginForm = () => {
+const LoginForm = ({ setToken }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -13,8 +13,9 @@ const LoginForm = () => {
       const response = await axios.post('/users/login', { email, password });
       console.log('Login response:', response);
       if (response.data.token) {
-        localStorage.setItem('token', response.data.token); 
-        navigate('/profile');
+        localStorage.setItem('token', response.data.token);
+        setToken(response.data.token);
+        navigate('/');
       } else {
         console.error('No token received');
       }
