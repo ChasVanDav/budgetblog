@@ -6,12 +6,12 @@ import dotenv from 'dotenv';
 import path, {dirname} from 'path';
 import { fileURLToPath } from 'url';
 
-const userRoutes = require('./routes/users');
-const tripRoutes = require('./routes/trips');
-const budgetRoutes = require('./routes/budgets');
-const spendingRoutes = require('./routes/spendings');
+import userRoutes from './routes/users.js';
+import tripRoutes from './routes/trips.js';
+import budgetRoutes from './routes/budgets.js';
+import spendingRoutes from './routes/spendings.js';
 
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 dotenv.config(); 
 const app = express(); 
