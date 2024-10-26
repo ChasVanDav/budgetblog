@@ -42,3 +42,58 @@ Whether you're a seasoned traveler or just starting your adventure, Budget Blog 
 Budget Blog is not just about functionality; it's about creating an experience! From vibrant color schemes to a layout that screams “organized chic,” every detail is designed with the aesthetic-loving traveler in mind. We know how important it is to have a visually pleasing environment, even in the digital space.
 
 ## 💡 How to Get Started
+
+### Prerequisites 
+- Node.js: Download and install from nodejs.org.
+- npm: Comes with Node.js. Verify installation with npm -v.
+
+### Clone the Repository
+```
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+```
+
+### Set Up the Backend
+- Navigate to the backend directory:
+```
+cd backend
+```
+
+### Install dependencies:
+```
+npm install
+```
+
+### Create a .env file and add your environment variables:
+```
+WEATHER_API_TOKEN=your_weather_api_token
+EXCHANGE_API_KEY=your_exchange_api_key
+PORT=5000
+```
+### Start the backend server:
+```
+npm start
+```
+- Access it at http://localhost:5000.
+
+## Set Up the Frontend
+
+### Navigate to the frontend directory:
+```
+cd ../frontend
+```
+
+### Install dependencies:
+```
+npm install
+```
+
+### Start the frontend development server:
+```
+npm start
+```
+- Access it at http://localhost:3000.
+
+## Additional Notes
+- API Documentation: Refer to the API documentation for the Weather API and Currency API.
+- Testing: Use Postman to test API endpoints.
