@@ -1,6 +1,6 @@
 # Budget Blog: A Travel Lover's Dream ✨🌍
 
-![Budget Blog](URL)
+![Budget Blog](homepage_week2.png)
 
 Welcome to **Budget Blog**—your go-to travel companion where savvy organization meets sheer razzle-dazzle! Designed especially for those who believe that travel should be both affordable and fabulous, our app is built for every adventurous soul looking to make the most of their journeys without breaking the bank. Let’s get into the nitty-gritty of what makes Budget Blog your ultimate travel planning partner!
 
