@@ -5,27 +5,34 @@ const CurrencyConverter = () => {
     const [to, setTo] = useState('');
     const [amount, setAmount] = useState('');
     const [result, setResult] = useState(null);
+    const [rate, setRate] = useState(null);  // To store the exchange rate
     const [error, setError] = useState(null);
 
     const handleConvert = async () => {
         setError(null);
         setResult(null);
+        setRate(null);  // Clear previous rate
 
         try {
-            const response = await fetch(`http://localhost:5000/currency/convert?from=${from}&to=${to}&amount=${amount}`);
+            const response = await fetch(`http://localhost:5000/api/currency?from=${from}&to=${to}&amount=${amount}`);
             const data = await response.json();
 
             if (response.ok) {
-                setResult(data.result);
+                // Accessing result and rate directly from the JSON response structure
+                setResult(data.result); // This is the converted amount
+                setRate(data.info.rate); // This is the exchange rate
             } else {
-                setError(data.error);
+                const errorMessage = data.error && typeof data.error === 'object'
+                    ? `${data.error.code}: ${data.error.message}`
+                    : data.error;
+                setError(errorMessage);
             }
         } catch (error) {
             setError('Failed to fetch data.');
         }
     };
-  
- return (
+
+    return (
         <div>
             <h1>Currency Converter</h1>
             <input 
@@ -48,10 +55,16 @@ const CurrencyConverter = () => {
             />
             <button onClick={handleConvert}>Convert</button>
 
-            {result && <h2>Converted Amount: {result}</h2>}
-            {error && <h2 style={{ color: 'red' }}>{error}</h2>}
+            {result !== null && (
+                <div>
+                    <h2>Converted Amount: {result}</h2>
+                    {rate && <p>Exchange Rate: {rate}</p>}
+                </div>
+            )}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
     );
 };
 
 export default CurrencyConverter;
+
