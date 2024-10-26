@@ -1,34 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Navbar = ({ currentTripDestination, setToken, token }) => {
-    const [isWeatherModalOpen, setWeatherModalOpen] = useState(false);
+const Navbar = ({ setToken, token }) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-        setToken();
-        navigate('/login'); // Redirect to login after logout
-    };
-
-    const openWeatherModal = () => {
-        if (!currentTripDestination) {
-            alert("Please set a trip destination to get the weather.");
-            return;
-        }
-        setWeatherModalOpen(true);
+        setToken(null);
+        navigate('/login');
     };
 
     return (
-        <nav>
-            <Link to="/">Home</Link>
+        <nav className="navbar">
+            <Link to="/">Dashboard</Link> 
             {token ? (
                 <>
                     <Link to="/profile">Profile</Link>
-                    <Link to="/budgets">Budgets</Link>
-                    <Link to="/spendings">Spendings</Link>
-                    
-                    <button onClick={openWeatherModal}>Get Weather</button>
+                    <Link to="/budgets/budget/1">Budget</Link> 
+                    <Link to="/spendings/spending/1">Spending</Link>
                     <button onClick={handleLogout}>Logout</button>
                 </>
             ) : (
@@ -42,3 +31,5 @@ const Navbar = ({ currentTripDestination, setToken, token }) => {
 };
 
 export default Navbar;
+
+

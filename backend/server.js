@@ -3,7 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv'; 
 
-import path, {dirname} from 'path';
+import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 import userRoutes from './routes/users.js';
@@ -18,16 +18,15 @@ const app = express();
 app.use(cors()); 
 app.use(express.json()); 
 
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirName = dirname(__filename);
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirName = dirname(__filename);
+// const REACT_DIST_DIR = path.join(__dirName, '..', 'frontend/dist')
 
-const REACT_DIST_DIR = path.join(__dirName, '..', 'frontend/dist')
-
-app.use(express.static(REACT_DIST_DIR));
-app.get('*', (req, res) => {
-    res.sendFile(path.join(REACT_DIST_DIR, 'index.html'));
-});
+// app.use(express.static(REACT_DIST_DIR));
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(REACT_DIST_DIR, 'index.html'));
+// });
 
 // app.get('/', (req, res) => {
 //   res.send(`Hello from Vanessa's server`);
@@ -62,7 +61,10 @@ app.get('/api/currency', async (req, res) => {
     }
 
     try {
-        const response = await fetch(`http://api.exchangeratesapi.io/v1/convert?access_key=${apiKey}&from=${from}&to=${to}&amount=${amount}`);
+        // Updated URL for the new currency conversion API endpoint
+        const response = await fetch(`https://api.apilayer.com/exchangerates_data/convert?from=${from}&to=${to}&amount=${amount}`, {
+            headers: { 'apikey': apiKey }
+        });
         const data = await response.json();
 
         if (data.success) {
@@ -80,3 +82,4 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Vanessa's Server is running on port ${PORT}`); 
 });
+

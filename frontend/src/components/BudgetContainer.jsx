@@ -1,24 +1,38 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const BudgetContainer = () => {
+  const { tripId } = useParams();
+  console.log("Retrieved tripId:", tripId);
+  
   const [budgets, setBudgets] = useState([]);
 
   useEffect(() => {
     const fetchBudgets = async () => {
       const token = localStorage.getItem('token');
+      console.log("Retrieved Token:", token);
+
+      if (!token) {
+        console.error("No token found");
+        return;
+      }
       try {
-        const response = await axios.get('/users/budgets', {
+        const response = await axios.get(`/budgets/budget/${tripId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
+        console.log("API Response:", response.data);
+
         setBudgets(response.data);
       } catch (error) {
         console.error('Failed to fetch budgets:', error);
       }
     };
 
-    fetchBudgets();
-  }, []);
+    if (tripId) {
+      fetchBudgets();
+    }
+  }, [tripId]);
 
   return (
     <div>
@@ -37,4 +51,3 @@ const BudgetContainer = () => {
 };
 
 export default BudgetContainer;
-

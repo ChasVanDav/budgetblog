@@ -4,12 +4,12 @@ import authenticateJWT from '../middlewares/auth.js';
 
 const router = express.Router();
 
-router.post('/budgets', authenticateJWT, createBudget);
+router.post('/budget', authenticateJWT, createBudget);
 
-router.get('/budgets/:tripId', authenticateJWT, getBudgetsByTrip);
+router.get('/budget/:tripId', authenticateJWT, getBudgetsByTrip);
 
-router.put('/budgets/:budgetId', authenticateJWT, updateBudget);
+router.put('/budget/:budgetId', authenticateJWT, updateBudget);
 
-router.delete('/budgets/:budgetId', authenticateJWT, deleteBudget);
+router.delete('/budget/:budgetId', authenticateJWT, deleteBudget);
 
 export default router; 
