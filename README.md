@@ -97,3 +97,6 @@ npm start
 ## Additional Notes
 - API Documentation: Refer to the API documentation for the Weather API and Currency API.
 - Testing: Use Postman to test API endpoints.
+
+## Check out the Trello for budget blog:
+https://trello.com/b/GPFGI6xz/the-organized-traveler
