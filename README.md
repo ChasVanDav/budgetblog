@@ -100,3 +100,6 @@ npm start
 
 ## Check out the Trello for budget blog:
 https://trello.com/b/GPFGI6xz/the-organized-traveler
+
+## budget blog project pitch:
+https://docs.google.com/document/d/1DN1FV2SsczBxM7R_EBVy618G51kcsHBkuOF9lJVnok0/edit?tab=t.0#heading=h.dyr8mjhzxd1y
