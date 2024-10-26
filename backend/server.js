@@ -28,9 +28,9 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(REACT_DIST_DIR, 'index.html'));
 });
 
-app.get('/', (req, res) => {
-  res.send(`Hello from Vanessa's server`);
-});
+// app.get('/', (req, res) => {
+//   res.send(`Hello from Vanessa's server`);
+// });
 
 //---- Routes ----//
 app.use('/users', userRoutes);
