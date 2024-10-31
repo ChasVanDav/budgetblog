@@ -13,8 +13,12 @@ import './App.css';
 function Dashboard() {
   return (
     <div className="dashboard">
-      <Weather />
-      <CurrencyConverter />
+      <div className="dashboard-item">
+        <Weather />
+      </div>
+      <div className="dashboard-item">
+        <CurrencyConverter />
+      </div>
     </div>
   );
 }
