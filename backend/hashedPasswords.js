@@ -1,5 +1,5 @@
-const bcrypt = require('bcrypt');
-const db = require('./db/db'); // Adjust the path as needed to match your directory structure
+import bcrypt from 'bcrypt';
+import db from './db/db.js';
 
 async function hashPasswords() {
     try {
