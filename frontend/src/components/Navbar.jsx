@@ -12,12 +12,15 @@ const Navbar = ({ setToken, token }) => {
 
     return (
         <nav className="navbar">
-            <Link to="/">Dashboard</Link> 
+            <Link to="/">Dashboard</Link>
             {token ? (
                 <>
+                    <Link to="/trips">My Trips</Link> 
+                    <Link to={`/budget/${1}`}>My Budget</Link>
+                    <Link to={`/spendings/${1}`}>My Spending</Link>
+                    <Link to="/new-trip">New Trip</Link>
+                    <Link to={`/new-spending/${1}`}>New Spending</Link>
                     <Link to="/profile">Profile</Link>
-                    <Link to="/budgets/budget/1">Budget</Link> 
-                    <Link to="/spendings/spending/1">Spending</Link>
                     <button onClick={handleLogout}>Logout</button>
                 </>
             ) : (
@@ -31,5 +34,4 @@ const Navbar = ({ setToken, token }) => {
 };
 
 export default Navbar;
-
 

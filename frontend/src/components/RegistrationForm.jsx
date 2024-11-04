@@ -29,14 +29,75 @@ const RegistrationForm = () => {
   };
 
   return (
-    <form onSubmit={handleRegister}>
-      <h2>Register</h2>
-      <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
-      <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-      <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-      <input type="text" placeholder="Home Country" value={homeCountry} onChange={(e) => setHomeCountry(e.target.value)} required />
-      <input type="text" placeholder="Home City" value={homeCity} onChange={(e) => setHomeCity(e.target.value)} required />
-      <input type="text" placeholder="Home Currency" value={homeCurrency} onChange={(e) => setHomeCurrency(e.target.value)} required />
+    <form onSubmit={handleRegister} aria-labelledby="registerHeading">
+      <h1 id="registerHeading">Register</h1>
+
+      <label htmlFor="username">Username</label>
+      <input 
+        type="text" 
+        id="username"
+        placeholder="Username" 
+        value={username} 
+        onChange={(e) => setUsername(e.target.value)} 
+        required 
+        aria-required="true"
+      />
+      <br />
+      <label htmlFor="email">Email</label>
+      <input 
+        type="email" 
+        id="email"
+        placeholder="Email" 
+        value={email} 
+        onChange={(e) => setEmail(e.target.value)} 
+        required 
+        aria-required="true"
+      />
+      <br />
+      <label htmlFor="password">Password</label>
+      <input 
+        type="password" 
+        id="password"
+        placeholder="Password" 
+        value={password} 
+        onChange={(e) => setPassword(e.target.value)} 
+        required 
+        aria-required="true"
+      />
+      <br />
+      <label htmlFor="homeCountry">Home Country</label>
+      <input 
+        type="text" 
+        id="homeCountry"
+        placeholder="Home Country" 
+        value={homeCountry} 
+        onChange={(e) => setHomeCountry(e.target.value)} 
+        required 
+        aria-required="true"
+      />
+      <br />
+      <label htmlFor="homeCity">Home City</label>
+      <input 
+        type="text" 
+        id="homeCity"
+        placeholder="Home City" 
+        value={homeCity} 
+        onChange={(e) => setHomeCity(e.target.value)} 
+        required 
+        aria-required="true"
+      />
+      <br />
+      <label htmlFor="homeCurrency">Home Currency</label>
+      <input 
+        type="text" 
+        id="homeCurrency"
+        placeholder="Home Currency" 
+        value={homeCurrency} 
+        onChange={(e) => setHomeCurrency(e.target.value)} 
+        required 
+        aria-required="true"
+      />
+      <br />
       <button type="submit">Register</button>
     </form>
   );

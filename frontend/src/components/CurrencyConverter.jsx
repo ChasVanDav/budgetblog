@@ -56,46 +56,56 @@ const CurrencyConverter = () => {
 
     return (
         <div>
-            <h1>Currency Converter</h1>
-            {/* Input for 'from' currency (e.g., USD) */}
+          <h1>Currency Converter</h1>
+          
+          <form onSubmit={(e) => { e.preventDefault(); handleConvert(); }}>
+            <label htmlFor="fromCurrency">From</label>
             <input 
-                type="text" 
-                placeholder="From Currency (e.g., USD)" 
-                value={from} 
-                onChange={(e) => setFrom(e.target.value)} 
+              type="text" 
+              id="fromCurrency"
+              placeholder="e.g., USD" 
+              value={from} 
+              onChange={(e) => setFrom(e.target.value)} 
+              required
+              aria-required="true"
             />
-            {/* Input for 'to' currency (e.g., EUR) */}
+            
+            <label htmlFor="toCurrency">To</label>
             <input 
-                type="text" 
-                placeholder="To Currency (e.g., EUR)" 
-                value={to} 
-                onChange={(e) => setTo(e.target.value)} 
+              type="text" 
+              id="toCurrency"
+              placeholder="e.g., EUR" 
+              value={to} 
+              onChange={(e) => setTo(e.target.value)} 
+              required
+              aria-required="true"
             />
-            {/* Input for amount to be converted */}
+            
+            <label htmlFor="amount">Amount</label>
             <input 
-                type="number" 
-                placeholder="Amount" 
-                value={amount} 
-                onChange={(e) => setAmount(e.target.value)} 
+              type="number" 
+              id="amount"
+              placeholder="Amount" 
+              value={amount} 
+              onChange={(e) => setAmount(e.target.value)} 
+              required
+              aria-required="true"
             />
-            {/* Button to initiate the conversion */}
-            <button onClick={handleConvert}>Convert</button>
-
-            {/* Display the conversion result if available */}
-            {result !== null && (
-                <div>
-                    {/* Show the converted amount formatted with commas and currency symbol */}
-                    <h2>Converted Amount: {formatCurrency(result, to)}</h2>
-                    {/* Show the exchange rate if available */}
-                    {rate && <p>Exchange Rate: {formatCurrency(rate, to)}</p>}
-                </div>
-            )}
-
-            {/* Display an error message if there's an error */}
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            
+            <button type="submit">Convert</button>
+          </form>
+    
+          {result !== null && (
+            <div>
+              <h2>{formatCurrency(result, to)}</h2>
+            </div>
+          )}
+    
+          {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
-    );
-};
-
-export default CurrencyConverter;
+      );
+    };
+    
+    export default CurrencyConverter;
+    
 

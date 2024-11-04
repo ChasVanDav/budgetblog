@@ -25,10 +25,31 @@ const LoginForm = ({ setToken }) => {
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <h2>Login</h2>
-      <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-      <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+    <form onSubmit={handleLogin} aria-labelledby="loginHeading">
+      <h1 id="loginHeading">Login</h1>
+
+      <label htmlFor="email">Email</label>
+      <input 
+        type="email" 
+        id="email"
+        placeholder="Email" 
+        value={email} 
+        onChange={(e) => setEmail(e.target.value)} 
+        required 
+        aria-required="true"
+      />
+      <br />
+      <label htmlFor="password">Password</label>
+      <input 
+        type="password" 
+        id="password"
+        placeholder="Password" 
+        value={password} 
+        onChange={(e) => setPassword(e.target.value)} 
+        required 
+        aria-required="true"
+      />
+      <br />
       <button type="submit">Login</button>
     </form>
   );

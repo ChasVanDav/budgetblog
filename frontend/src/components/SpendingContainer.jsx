@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 const SpendingContainer = () => {
-  const { budgetId } = useParams();
+  const { tripId } = useParams();
   const [spendings, setSpendings] = useState([]);
   const [error, setError] = useState(null);
 
@@ -11,7 +11,7 @@ const SpendingContainer = () => {
     const fetchSpendings = async () => {
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.get(`/spendings/spending/${budgetId}`, {
+        const response = await axios.get(`/spendings/${tripId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setSpendings(response.data);
@@ -23,22 +23,26 @@ const SpendingContainer = () => {
     };
 
     fetchSpendings();
-  }, [budgetId]);
+  }, [tripId]);
 
   return (
     <div>
-      <h2>My Spending</h2>
       {error ? (
         <p className="error">{error}</p>
       ) : (
         spendings.map((spending) => (
           <div key={spending.spend_id} className="spending-item">
-            <h3>Category: {spending.category}</h3>
-            <p>Amount: ${parseFloat(spending.amount).toFixed(2)}</p>
-            <p>Note: {spending.note}</p>
-            {spending.photo && (
+            <h2>Amount: ${parseFloat(spending.amount).toFixed(2)}</h2>
+            <h4>Category: {spending.category}</h4>
+            <h3>Note: {spending.note}</h3>
+            <p>Date: {new Date(spending.date).toLocaleDateString()}</p>
+            <p>Timestamp: {new Date(spending.timestamp).toLocaleString()}</p>
+            <p>Currency: {spending.currency}</p>
+            <p>Location: {spending.location}</p>
+            <p>Star Rating: {spending.star_rating}</p>
+            {/* {spending.photo && (
               <img src={spending.photo} alt={spending.note} className="spending-photo" />
-            )}
+            )} */}
           </div>
         ))
       )}
@@ -47,3 +51,4 @@ const SpendingContainer = () => {
 };
 
 export default SpendingContainer;
+

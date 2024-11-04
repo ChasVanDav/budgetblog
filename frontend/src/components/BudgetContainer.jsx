@@ -4,28 +4,28 @@ import axios from 'axios';
 
 const BudgetContainer = () => {
   const { tripId } = useParams();
-  console.log("Retrieved tripId:", tripId);
-  
   const [budgets, setBudgets] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchBudgets = async () => {
       const token = localStorage.getItem('token');
-      console.log("Retrieved Token:", token);
 
       if (!token) {
         console.error("No token found");
+        setError('Authentication token is missing.');
         return;
       }
-      try {
-        const response = await axios.get(`/budgets/budget/${tripId}`, {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        console.log("API Response:", response.data);
 
+      try {
+        const response = await axios.get(`/budgets/${tripId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setBudgets(response.data);
+        setError(null);
       } catch (error) {
         console.error('Failed to fetch budgets:', error);
+        setError('Could not load budget data. Please try again later.');
       }
     };
 
@@ -36,16 +36,18 @@ const BudgetContainer = () => {
 
   return (
     <div>
-      <h2>My Budget</h2>
-      {budgets.map(budget => (
-        <div key={budget.budget_id}>
-          <h3>{budget.place_name}</h3>
-          <p>{budget.notes}</p>
-          <p>Remaining Amount: {budget.new_amount} {budget.currency}</p>
-          <p>Category: {budget.category}</p>
-          <p>Star Rating: {budget.star_rating}</p>
-        </div>
-      ))}
+      <h1>My Budget</h1>
+      {error ? (
+        <p className="error">{error}</p>
+      ) : (
+        budgets.map(budget => (
+          <div key={budget.budget_id}>
+            <h3>Destination Country: {budget.destination_country}</h3>
+            <h3>Starting Budget: ${parseFloat(budget.starting_budget).toFixed(2)}</h3>
+            <h2>Remaining Budget: ${parseFloat(budget.remaining_budget).toFixed(2)}</h2>
+          </div>
+        ))
+      )}
     </div>
   );
 };

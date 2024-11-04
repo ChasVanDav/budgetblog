@@ -40,12 +40,15 @@ const Weather = () => {
     <div>
       <h1>Weather</h1>
       <form onSubmit={handleGetWeather}>
+        <label htmlFor="city">City</label>
         <input
           type="text"
+          id="city"
           value={city}
           onChange={(e) => setCity(e.target.value)}
           placeholder="Enter City"
           required
+          aria-required="true"
         />
         <button type="submit">Get Weather</button>
       </form>
@@ -56,11 +59,11 @@ const Weather = () => {
           <img
             id="icon"
             src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
-            alt={`An icon representing ${weather.weather[0].description}`}
+            alt={`Icon representing ${weather.weather[0].description}`}
           />
           <h2>{weather.name}, {weather.sys.country}</h2>
-          <h2>Temp: {weather.main.temp.toFixed(2)}°F</h2>
-          <h2>Condition: {weather.weather[0].description}</h2>
+          <h2>{weather.main.temp.toFixed(0)}°F</h2>
+          <h2>{weather.weather[0].description}</h2>
           <h2>Humidity: {weather.main.humidity}%</h2>
           <h2>Wind Speed: {weather.wind.speed} m/s</h2>
         </div>
