@@ -8,42 +8,48 @@ import BudgetContainer from './components/BudgetContainer';
 import SpendingContainer from './components/SpendingContainer';
 import CurrencyConverter from './components/CurrencyConverter';
 import Weather from './components/Weather';
+import NewTripForm from './components/NewTripForm';
+import NewSpendingForm from './components/NewSpendingForm';
+import TripContainer from './components/TripContainer';
 import './App.css';
 
 function Dashboard() {
-  return (
-    <div className="dashboard">
-      <div className="dashboard-item">
-        <Weather />
-      </div>
-      <div className="dashboard-item">
-        <CurrencyConverter />
-      </div>
-    </div>
-  );
+    return (
+        <div className="dashboard">
+            <div className="dashboard-item">
+                <Weather />
+            </div>
+            <div className="dashboard-item">
+                <CurrencyConverter />
+            </div>
+        </div>
+    );
 }
 
 function App() {
-  const [token, setToken] = useState(localStorage.getItem('token'));
+    const [token, setToken] = useState(localStorage.getItem('token'));
 
-  return (
-    <div className="app-container">
-      <Router>
-        <Navbar setToken={setToken} token={token} />
-        <div className="content">
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/register" element={<RegistrationForm />} />
-            <Route path="/login" element={<LoginForm setToken={setToken} />} />
-            <Route path="/budgets/budget/:tripId" element={<BudgetContainer />} />
-            <Route path="/spendings/spending/:budgetId" element={<SpendingContainer />} />
-            <Route path="/*" element={<Navigate to="/" />} />
-          </Routes>
+    return (
+        <div className="app-container">
+            <Router>
+                <Navbar setToken={setToken} token={token} />
+                <div className="content">
+                    <Routes>
+                        <Route path="/" element={<Dashboard />} />
+                        <Route path="/profile" element={<Profile />} />
+                        <Route path="/register" element={<RegistrationForm />} />
+                        <Route path="/login" element={<LoginForm setToken={setToken} />} />
+                        <Route path="/budget/:tripId" element={<BudgetContainer />} />
+                        <Route path="/spendings/:tripId" element={<SpendingContainer />} />
+                        <Route path="/new-trip" element={<NewTripForm />} />
+                        <Route path="/new-spending/:budgetId" element={<NewSpendingForm />} />
+                        <Route path="/trips" element={<TripContainer />} />
+                        <Route path="/*" element={<Navigate to="/" />} />
+                    </Routes>
+                </div>
+            </Router>
         </div>
-      </Router>
-    </div>
-  );
+    );
 }
 
 export default App;
