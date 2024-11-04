@@ -2,5 +2,13 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "jsonwebtoken": "^9.0.2"
-  }
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.0.1",
+    "jest": "^29.7.0"
+  },
+  "scripts": {
+  "test": "react-scripts test"
+}
 }
