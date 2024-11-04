@@ -2,12 +2,19 @@ import db from '../db/db.js';
 
 //----create a new spending for a budget----//
 export const createSpending = async (req, res) => {
-    const { budget_id, category, amount, note, photo } = req.body;
+    const userId = req.userId; 
+    const { category, amount, note, photo, date, currency, location, star_rating } = req.body;
+    const budget_id = req.params.budgetId;
 
     try {
+        const budgetCheck = await db.query('SELECT * FROM budgets WHERE budget_id = $1', [budget_id]);
+        if (budgetCheck.rows.length === 0) {
+            return res.status(404).json({ error: 'Budget not found' });
+        }
+
         await db.query(
-            'INSERT INTO spendings (budget_id, category, amount, note, photo) VALUES ($1, $2, $3, $4, $5)',
-            [budget_id, category, amount, note, photo]
+            'INSERT INTO spendings (budget_id, category, amount, note, photo, date, currency, location, star_rating) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
+            [budget_id, category, amount, note, photo, date, currency, location, star_rating]
         );
 
         res.status(201).json({ message: 'Spending created successfully' });
@@ -19,7 +26,7 @@ export const createSpending = async (req, res) => {
 
 //----get all spendings for a specific budget----//
 export const getSpendingsByBudget = async (req, res) => {
-    const { budgetId } = req.params;
+    const budgetId = req.params.budgetId;
 
     try {
         const result = await db.query('SELECT * FROM spendings WHERE budget_id = $1', [budgetId]);
@@ -37,13 +44,13 @@ export const getSpendingsByBudget = async (req, res) => {
 
 //----update a specific spending----//
 export const updateSpending = async (req, res) => {
-    const { spendId } = req.params;
-    const { category, amount, note, photo } = req.body;
+    const spendId = req.params.spendId;
+    const { category, amount, note, photo, date, currency, location, star_rating } = req.body;
 
     try {
         const result = await db.query(
-            'UPDATE spendings SET category = $1, amount = $2, note = $3, photo = $4 WHERE spend_id = $5 RETURNING *',
-            [category, amount, note, photo, spendId]
+            'UPDATE spendings SET category = $1, amount = $2, note = $3, photo = $4, date = $5, currency = $6, location = $7, star_rating = $8 WHERE spending_id = $9 RETURNING *',
+            [category, amount, note, photo, date, currency, location, star_rating, spendId]
         );
 
         if (result.rowCount === 0) {
@@ -59,10 +66,10 @@ export const updateSpending = async (req, res) => {
 
 //----delete a specific spending----//
 export const deleteSpending = async (req, res) => {
-    const { spendId } = req.params;
+    const spendId = req.params.spendId;
 
     try {
-        const result = await db.query('DELETE FROM spendings WHERE spend_id = $1 RETURNING *', [spendId]);
+        const result = await db.query('DELETE FROM spendings WHERE spending_id = $1 RETURNING *', [spendId]);
 
         if (result.rowCount === 0) {
             return res.status(404).json({ error: 'Spending not found' });
@@ -74,5 +81,3 @@ export const deleteSpending = async (req, res) => {
         res.status(500).json({ error: 'Failed to delete spending', details: err.message });
     }
 };
-
-// module.exports = { createSpending, getSpendingsByBudget, updateSpending, deleteSpending };

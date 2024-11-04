@@ -2,7 +2,7 @@ import db from '../db/db.js';
 
 //----create a new trip----//
 export const createTrip = async (req, res) => {
-    const userId = req.userId;
+    const userId = req.userId; 
     const { destination_country, destination_city, arrival_date, departure_date } = req.body;
 
     try {
@@ -77,5 +77,3 @@ export const deleteTrip = async (req, res) => {
         res.status(500).json({ error: 'Failed to delete trip', details: err.message });
     }
 };
-
-// module.exports = { createTrip, getUserTrips, updateTrip, deleteTrip };

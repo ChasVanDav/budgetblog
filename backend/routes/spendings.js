@@ -1,15 +1,12 @@
 import express from 'express';
-import { createSpending, getSpendingsByBudget, updateSpending, deleteSpending } from '../controllers/spendingController.js';
 import authenticateJWT from '../middlewares/auth.js';
+import { createSpending, getSpendingsByBudget, updateSpending, deleteSpending } from '../controllers/spendingController.js';
 
 const router = express.Router();
 
-router.post('/spending', authenticateJWT, createSpending);
+router.post('/:budgetId', authenticateJWT, createSpending);  // /spendings/:budgetId
+router.get('/:budgetId', authenticateJWT, getSpendingsByBudget);  // /spendings/:budgetId
+router.put('/:spendId', authenticateJWT, updateSpending);  // /spendings/:spendId
+router.delete('/:spendId', authenticateJWT, deleteSpending);  // /spendings/:spendId
 
-router.get('/spending/:budgetId', authenticateJWT, getSpendingsByBudget);
-
-router.put('/spending/:spendId', authenticateJWT, updateSpending);
-
-router.delete('/spending/:spendId', authenticateJWT, deleteSpending);
-
-export default router; 
+export default router;

@@ -38,7 +38,6 @@ export const loginUser = async (req, res) => {
         }
 
         const user = result.rows[0]; 
-
         const match = await bcrypt.compare(password, user.password);
 
         if (!match) {
@@ -46,7 +45,6 @@ export const loginUser = async (req, res) => {
         }
 
         const token = jwt.sign({ userId: user.user_id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
         res.json({ message: 'Login successful', token });
     } catch (err) {
         console.error(err);
@@ -60,14 +58,12 @@ export const getUserProfile = async (req, res) => {
     console.log('User ID from JWT:', userId);
 
     try {
-        //everything returned except hashed password for security
         const result = await db.query('SELECT user_id, username, email, home_country, home_city, home_currency FROM users WHERE user_id = $1', [userId]);
 
         if (result.rows.length === 0) {
             return res.status(404).json({ error: 'User not found' });
         }
 
-        // Selectively return user data without the hashed password
         const userProfile = result.rows[0];
         res.json(userProfile);
     } catch (err) {
@@ -93,5 +89,3 @@ export const deleteUser = async (req, res) => {
         res.status(500).json({ error: 'Failed to delete user', details: err.message });
     }
 };
-
-// module.exports = { registerUser, loginUser, getUserProfile };

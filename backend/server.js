@@ -1,10 +1,10 @@
-//----dependencies & configuration----//
+ //----dependencies & configuration----//
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv'; 
 
-import path, { dirname } from 'path';
-import { fileURLToPath } from 'url';
+// import path, { dirname } from 'path';
+// import { fileURLToPath } from 'url';
 
 import userRoutes from './routes/users.js';
 import tripRoutes from './routes/trips.js';
@@ -28,9 +28,9 @@ app.use(express.json());
 //     res.sendFile(path.join(REACT_DIST_DIR, 'index.html'));
 // });
 
-// app.get('/', (req, res) => {
-//   res.send(`Hello from Vanessa's server`);
-// });
+app.get('/', (req, res) => {
+  res.send(`Hello from Vanessa's server`);
+});
 
 //---- Routes ----//
 app.use('/users', userRoutes);
@@ -61,7 +61,6 @@ app.get('/api/currency', async (req, res) => {
     }
 
     try {
-        // Updated URL for the new currency conversion API endpoint
         const response = await fetch(`https://api.apilayer.com/exchangerates_data/convert?from=${from}&to=${to}&amount=${amount}`, {
             headers: { 'apikey': apiKey }
         });
@@ -82,4 +81,3 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Vanessa's Server is running on port ${PORT}`); 
 });
-

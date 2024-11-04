@@ -2,12 +2,12 @@ import db from '../db/db.js';
 
 //----create a new budget for a trip----//
 export const createBudget = async (req, res) => {
-    const { trip_id, destination_country, budget_date, place_name, starting_amount, new_amount, category, currency, notes, location, star_rating } = req.body;
+    const { trip_id, destination_country, starting_budget, remaining_budget } = req.body;
 
     try {
         await db.query(
-            'INSERT INTO budgets (trip_id, destination_country, budget_date, place_name, starting_amount, new_amount, category, currency, notes, location, star_rating) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',
-            [trip_id, destination_country, budget_date, place_name, starting_amount, new_amount, category, currency, notes, location, star_rating]
+            'INSERT INTO budgets (trip_id, destination_country, starting_budget, remaining_budget) VALUES ($1, $2, $3, $4)',
+            [trip_id, destination_country, starting_budget, remaining_budget]
         );
 
         res.status(201).json({ message: 'Budget created successfully' });
@@ -38,12 +38,12 @@ export const getBudgetsByTrip = async (req, res) => {
 //----update a specific budget----//
 export const updateBudget = async (req, res) => {
     const { budgetId } = req.params;
-    const { place_name, starting_amount, new_amount, category, currency, notes, location, star_rating } = req.body;
+    const { starting_budget, remaining_budget } = req.body;
 
     try {
         const result = await db.query(
-            'UPDATE budgets SET place_name = $1, starting_amount = $2, new_amount = $3, category = $4, currency = $5, notes = $6, location = $7, star_rating = $8 WHERE budget_id = $9 RETURNING *',
-            [place_name, starting_amount, new_amount, category, currency, notes, location, star_rating, budgetId]
+            'UPDATE budgets SET starting_budget = $1, remaining_budget = $2 WHERE budget_id = $3 RETURNING *',
+            [starting_budget, remaining_budget, budgetId]
         );
 
         if (result.rowCount === 0) {
@@ -75,4 +75,10 @@ export const deleteBudget = async (req, res) => {
     }
 };
 
-// module.exports = { createBudget, getBudgetsByTrip, updateBudget, deleteBudget };
+// Exporting the functions for use in routes
+export default {
+    createBudget,
+    getBudgetsByTrip,
+    updateBudget,
+    deleteBudget
+};

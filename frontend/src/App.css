@@ -1,107 +1,162 @@
-/* General App layout */
+body {
+  margin: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .app-container {
-  background-color: #b3e0ff; /* Vibrant sky blue background */
-  color: #333;
+  background-color: white; /* accessible contrast */
+  color: black;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: 'Comic Sans MS', 'Arial', sans-serif; /* Light, bubbly font */
+  font-weight: lighter;
+  line-height: 1.6; 
+  padding: 10px; 
+  max-width: 100%; /* Preventing body container from exceeding screen width */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 .navbar {
-  width: 100%;
-  background-color: #dcb6ff; /* Vibrant light purple */
-  padding: 1rem;
+  background-color: white; 
+  padding: 1rem; 
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-between; 
+  align-items: center; 
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap; 
+  width: 100%; /* Ensuring navbar matches the full width */
+  max-width: 100%; /* Preventing navbar from exceeding screen width */
 }
 
 .navbar a {
   text-decoration: none;
-  color: #333;
-  margin-right: 1rem;
-  font-weight: bold;
+  color: black;
+  font-weight: normal; 
+  font-size: 1.2em; 
+  padding: 0 10px; 
+  margin: 0 5px; 
+  max-width: 150px; 
+  text-align: center; 
 }
 
 .navbar a:hover {
-  color: #0056b3; /* Darker sky blue on hover */
+  color: skyblue; 
 }
 
 .navbar button {
-  background-color: #1e90ff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 10px;
+  color: black;
+  border-radius: 12px; 
+  border: 1px solid black;
+  padding: 8px 12px; 
   cursor: pointer;
   margin-left: 10px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s, transform 0.2s; 
+  font-size: 1em; 
+  max-width: 150px; 
+  width: auto; 
 }
 
 .navbar button:hover {
-  background-color: #87cefa;
+  background-color: skyblue; 
+  transform: translateY(-2px); 
 }
 
-/* Dashboard styling */
 .dashboard {
   display: flex;
-  gap: 20px;
-  justify-content: center;
-  padding: 2rem;
+  flex-direction: column; 
+  gap: 15px; 
+  padding: 1rem; 
 }
 
 .dashboard-item {
   background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 45%; /* Adjust for side-by-side layout */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px; 
+  width: 100%; 
+  max-width: 400px; /* Limiting max width */
   text-align: center;
+  color: black; 
+  margin: 0 auto; /* Centering items */
 }
 
-/* Content container */
 .content {
-  padding: 2rem;
-  width: 80%;
-  margin: 2rem auto;
+  padding: 1.5rem; 
+  width: 100%; 
+  max-width: 800px; /* Limiting max width for content */
+  margin: 0 auto; 
+  border: 1px solid #e0e0e0; 
+  border-radius: 8px; 
 }
 
-/* Input styling */
 input, select {
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%;
+  padding: 12px; 
+  margin: 10px 0; 
+  border: 1px solid #7fc4f2; 
+  border-radius: 15px;
+  width: calc(100% - 24px); /* Ensuring inputs fit well */
+  font-size: 16px; 
 }
 
 input:focus, select:focus {
-  border-color: #1e90ff;
+  border-color: skyblue;
   outline: none;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .content {
-    width: 95%;
-  }
+button {
+  padding: 12px 20px; 
+  font-size: 16px; 
+  border-radius: 10px; 
+  border: 1px solid black;
+  background-color: white; 
+  color: black;
+  transition: background-color 0.3s, transform 0.2s; 
+  max-width: 150px; 
+  width: auto; 
+}
 
+button:hover {
+  background-color: skyblue; 
+  transform: translateY(-2px); 
+}
+
+@media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
-    align-items: flex-start;
+      flex-direction: column; 
+      align-items: flex-start; 
+      padding: 1rem; 
+      width: 100%; /* Ensuring navbar uses full width */
+      max-width: 100%; /* Preventing navbar from exceeding screen width */
   }
 
   .navbar a, .navbar button {
-    margin: 10px 0;
+      margin: 5px 0; 
+      width: auto; 
+      max-width: 100%; 
   }
 
   .dashboard {
-    flex-direction: column;
+      flex-direction: column; 
   }
 
   .dashboard-item {
-    width: 100%;
+      width: 90%; /* Keeping it responsive on smaller screens */
+      padding: 15px; 
   }
+}
+
+@media (min-width: 769px) {
+  .dashboard {
+      flex-direction: row; 
+      gap: 20px; 
+  }
+
+  .dashboard-item {
+      max-width: 300px; 
+  }
+}
+
+#icon {
+  width: 40%;
+  margin: -30px; 
 }
