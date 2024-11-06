@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: light;
 }
 
 .app-container {
@@ -9,7 +10,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-weight: lighter;
+  font-weight:lighter;
   line-height: 1.6; 
   padding: 10px; 
   max-width: 100%; /* Preventing body container from exceeding screen width */
@@ -40,7 +41,7 @@ body {
 }
 
 .navbar a:hover {
-  color: skyblue; 
+  color: rgb(18, 182, 247); 
 }
 
 .navbar button {
@@ -57,7 +58,7 @@ body {
 }
 
 .navbar button:hover {
-  background-color: skyblue; 
+  background-color: rgb(164, 229, 255);  
   transform: translateY(-2px); 
 }
 
@@ -116,7 +117,7 @@ button {
 }
 
 button:hover {
-  background-color: skyblue; 
+  background-color: rgb(164, 229, 255); 
   transform: translateY(-2px); 
 }
 
