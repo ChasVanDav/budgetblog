@@ -78,6 +78,9 @@ app.get('/api/currency', async (req, res) => {
 
 //---- Start Server ----//
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
   console.log(`Vanessa's Server is running on port ${PORT}`); 
 });
+
+export default app;
