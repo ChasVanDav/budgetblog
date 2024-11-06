@@ -85,7 +85,7 @@ const CurrencyConverter = () => {
             <input 
               type="number" 
               id="amount"
-              placeholder="Amount" 
+              placeholder="Enter number" 
               value={amount} 
               onChange={(e) => setAmount(e.target.value)} 
               required

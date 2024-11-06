@@ -40,13 +40,13 @@ const Weather = () => {
     <div>
       <h1>Weather</h1>
       <form onSubmit={handleGetWeather}>
-        <label htmlFor="city">City</label>
+        <label htmlFor="city">Enter City Name</label>
         <input
           type="text"
           id="city"
           value={city}
           onChange={(e) => setCity(e.target.value)}
-          placeholder="Enter City"
+          placeholder="e.g., 'Paris' or 'New York City' "
           required
           aria-required="true"
         />
