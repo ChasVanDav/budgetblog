@@ -15,13 +15,16 @@ import './App.css';
 
 function Dashboard() {
     return (
+        <div>
         <div className="dashboard">
             <div className="dashboard-item">
                 <Weather />
             </div>
+            
             <div className="dashboard-item">
                 <CurrencyConverter />
             </div>
+        </div>
         </div>
     );
 }

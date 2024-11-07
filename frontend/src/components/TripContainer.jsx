@@ -32,6 +32,7 @@ const TripContainer = () => {
 
     return (
         <div>
+                   <img src="/stylized-map-of-world-vector-12563537.jpg" alt="image of world map" style={{ width: '40%', height: 'auto', marginBottom: '10px' }} />
             <h1>My Trips</h1>
             {error ? (
                 <p className="error">{error}</p>
@@ -39,9 +40,8 @@ const TripContainer = () => {
                 <ul>
                     {trips.map(trip => (
                         <li key={trip.trip_id}>
-                            <h3>Destination: {trip.destination_city}, {trip.destination_country}</h3>
-                            <p>Arrival Date: {new Date(trip.arrival_date).toLocaleDateString()}</p>
-                            <p>Departure Date: {new Date(trip.departure_date).toLocaleDateString()}</p>
+                            <h2>{trip.destination_city}, {trip.destination_country}</h2>
+                            <p>{new Date(trip.arrival_date).toLocaleDateString()} ~ {new Date(trip.departure_date).toLocaleDateString()}</p>
                         </li>
                     ))}
                 </ul>

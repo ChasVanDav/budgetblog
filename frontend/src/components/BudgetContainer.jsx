@@ -36,15 +36,16 @@ const BudgetContainer = () => {
 
   return (
     <div>
-      <h1>My Budget</h1>
+      <img src="/budgetimage.jpg" alt="image of calculator" style={{ width: '30%', height: 'auto', marginBottom: '10px' }} />
+      
       {error ? (
         <p className="error">{error}</p>
       ) : (
         budgets.map(budget => (
           <div key={budget.budget_id}>
-            <h3>Destination Country: {budget.destination_country}</h3>
+            <h1>My Budget for: {budget.destination_country} </h1>
             <h3>Starting Budget: ${parseFloat(budget.starting_budget).toFixed(2)}</h3>
-            <h2>Remaining Budget: ${parseFloat(budget.remaining_budget).toFixed(2)}</h2>
+            <h3>Remaining Budget: ${parseFloat(budget.remaining_budget).toFixed(2)}</h3>
           </div>
         ))
       )}

@@ -27,6 +27,7 @@ const SpendingContainer = () => {
 
   return (
     <div>
+        <img src="/shoppingbags.jpg" alt="image of shopping bags" style={{ width: '30%', height: 'auto', marginBottom: '10px' }} />
       {error ? (
         <p className="error">{error}</p>
       ) : (
@@ -40,9 +41,9 @@ const SpendingContainer = () => {
             <p>Currency: {spending.currency}</p>
             <p>Location: {spending.location}</p>
             <p>Star Rating: {spending.star_rating}</p>
-            {/* {spending.photo && (
-              <img src={spending.photo} alt={spending.note} className="spending-photo" />
-            )} */}
+            {spending.photo && (
+              <img src={"User1Image2.jpeg"} alt={spending.note} className="spending-photo" />
+            )}
           </div>
         ))
       )}
