@@ -27,23 +27,24 @@ const SpendingContainer = () => {
 
   return (
     <div>
-        <img src="/shoppingbags.jpg" alt="image of shopping bags" style={{ width: '30%', height: 'auto', marginBottom: '10px' }} />
+        {/* <img src="/shoppingbags.jpg" alt="image of shopping bags" style={{ width: '30%', height: 'auto', marginBottom: '10px' }} /> */}
       {error ? (
         <p className="error">{error}</p>
       ) : (
         spendings.map((spending) => (
           <div key={spending.spend_id} className="spending-item">
-            <h2>Amount: ${parseFloat(spending.amount).toFixed(2)}</h2>
             <h4>Category: {spending.category}</h4>
-            <h3>Note: {spending.note}</h3>
-            <p>Date: {new Date(spending.date).toLocaleDateString()}</p>
+            <h2>Amount: ${parseFloat(spending.amount).toFixed(2)}</h2>
+            
             <p>Timestamp: {new Date(spending.timestamp).toLocaleString()}</p>
+            <p>Date: {new Date(spending.date).toLocaleDateString()}</p>
             <p>Currency: {spending.currency}</p>
+            <h3>Note: {spending.note}</h3>
             <p>Location: {spending.location}</p>
-            <p>Star Rating: {spending.star_rating}</p>
-            {spending.photo && (
-              <img src={"User1Image2.jpeg"} alt={spending.note} className="spending-photo" />
-            )}
+            {/* <p>Rating: {spending.star_rating} out of 5</p> */}
+            {/* {spending.photo && (
+              <img src={spending.photo} alt={spending.note} className="spending-photo" />
+            )} */}
           </div>
         ))
       )}

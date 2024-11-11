@@ -22,7 +22,7 @@ const Profile = () => {
 
   return (
     <div>
-      <img src="/userprofile.jpg" alt="image of outline of a person" style={{ width: '25%', height: 'auto', marginBottom: '10px' }} />
+      <img src="/busan.jpg" alt="image of outline of a person" style={{ width: '25%', height: 'auto', marginBottom: '10px' }} />
 
       {user ? (
         <div>
