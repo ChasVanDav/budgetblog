@@ -7,11 +7,13 @@ export const createSpending = async (req, res) => {
     const budget_id = req.params.budgetId;
 
     try {
+        // Check if the budget exists before creating a new spending
         const budgetCheck = await db.query('SELECT * FROM budgets WHERE budget_id = $1', [budget_id]);
         if (budgetCheck.rows.length === 0) {
             return res.status(404).json({ error: 'Budget not found' });
         }
 
+        // Insert the new spending into the spendings table
         await db.query(
             'INSERT INTO spendings (budget_id, category, amount, note, photo, date, currency, location, star_rating) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
             [budget_id, category, amount, note, photo, date, currency, location, star_rating]
@@ -29,6 +31,7 @@ export const getSpendingsByBudget = async (req, res) => {
     const budgetId = req.params.budgetId;
 
     try {
+        // Retrieve all spendings for the given budget, ordered by date in descending order
         const result = await db.query('SELECT * FROM spendings WHERE budget_id = $1 ORDER BY date DESC', [budgetId]);
 
         if (result.rows.length === 0) {
@@ -48,11 +51,13 @@ export const updateSpending = async (req, res) => {
     const { category, amount, note, photo, date, currency, location, star_rating } = req.body;
 
     try {
+        // Update the specific spending details by spendId
         const result = await db.query(
             'UPDATE spendings SET category = $1, amount = $2, note = $3, photo = $4, date = $5, currency = $6, location = $7, star_rating = $8 WHERE spending_id = $9 RETURNING *',
             [category, amount, note, photo, date, currency, location, star_rating, spendId]
         );
 
+        // If no rows were updated, the spending may not exist
         if (result.rowCount === 0) {
             return res.status(404).json({ error: 'Spending not found' });
         }
@@ -69,8 +74,10 @@ export const deleteSpending = async (req, res) => {
     const spendId = req.params.spendId;
 
     try {
+        // Delete the specific spending by spendId
         const result = await db.query('DELETE FROM spendings WHERE spending_id = $1 RETURNING *', [spendId]);
 
+        // If no rows were deleted, the spending may not exist
         if (result.rowCount === 0) {
             return res.status(404).json({ error: 'Spending not found' });
         }

@@ -1,179 +1,183 @@
+/* === GLOBAL STYLES === */
 body {
   margin: 0;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-weight: light;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; /* Clean, sans-serif font */
+  font-weight: light; /* Light font weight for a soft look */
 }
 
+/* === MAIN APP CONTAINER === */
 .app-container {
-  background-color: white; /* accessible contrast */
-  color: black;
-  min-height: 100vh;
+  background-color: white; /* Accessible background color */
+  color: black; /* High contrast text color */
+  min-height: 100vh; /* Makes the container full viewport height */
   display: flex;
-  flex-direction: column;
-  font-weight:lighter;
-  line-height: 1.6; 
-  padding: 10px; 
-  max-width: 100%; /* Preventing body container from exceeding screen width */
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  border: 1px solid skyblue;
+  flex-direction: column; /* Column layout for stacking elements vertically */
+  font-weight: lighter; /* Light text appearance */
+  line-height: 1.6; /* Spacing between lines */
+  padding: 10px; /* Padding inside the container */
+  max-width: 100%; /* Prevent overflow */
+  overflow-x: hidden; /* Hides any horizontal overflow */
+  border: 1px solid skyblue; /* Subtle border for framing */
 }
 
+/* === NAVBAR STYLING === */
 .navbar {
-  background-color: white; 
-  padding: 1rem; 
-  display: flex;
-  /* justify-content: space-between;  */
-  align-items: center; 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  /* border: 1px solid skyblue; */
-  flex-wrap: wrap; 
-  width: 100%; /* Ensuring navbar matches the full width */
-  max-width: 100%; /* Preventing navbar from exceeding screen width */
+  background-color: white; /* Matches app's background */
+  padding: 1rem; /* Comfortable padding */
+  display: flex; /* Flex layout for navigation items */
+  align-items: center; /* Center items vertically */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for separation */
+  flex-wrap: wrap; /* Wrap items on smaller screens */
+  width: 100%; /* Full width to match the container */
+  max-width: 100%; /* Prevents overflow */
 }
 
 .navbar a {
-  text-decoration: none;
+  text-decoration: none; /* Removes underline from links */
   color: black;
-  font-weight: normal; 
-  font-size: 1.2em; 
-  padding: 0 10px; 
-  margin: 0 5px; 
-  max-width: 150px; 
-  text-align: center; 
+  font-weight: normal;
+  font-size: 1.2em;
+  padding: 0 10px; /* Spacing around each link */
+  margin: 0 5px; /* Space between links */
+  max-width: 150px;
+  text-align: center; /* Centers text in navbar links */
 }
 
 .navbar a:hover {
-  color: rgb(18, 182, 247); 
+  color: rgb(18, 182, 247); /* Bright color on hover */
 }
 
 .navbar button {
   color: black;
-  border-radius: 12px; 
+  border-radius: 12px; /* Rounded corners */
   border: 1px solid black;
-  padding: 8px 12px; 
-  cursor: pointer;
-  margin-left: 10px;
-  transition: background-color 0.3s, transform 0.2s; 
-  font-size: 1em; 
-  max-width: 150px; 
-  width: auto; 
+  padding: 8px 12px;
+  cursor: pointer; /* Pointer cursor on hover */
+  margin-left: 10px; /* Space next to links */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions for hover */
+  font-size: 1em;
+  max-width: 150px;
 }
 
 .navbar button:hover {
-  background-color: rgb(164, 229, 255);  
-  transform: translateY(-2px); 
+  background-color: rgb(164, 229, 255); /* Light blue on hover */
+  transform: translateY(-2px); /* Hover effect with slight lift */
 }
 
+/* === DASHBOARD STYLES === */
 .dashboard {
   display: flex;
-  flex-direction: column; 
-  gap: 15px; 
-  padding: 1rem; 
+  flex-direction: column; /* Vertical stacking of items */
+  gap: 15px; /* Space between items */
+  padding: 1rem;
 }
 
 .dashboard-item {
   background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  border: 1px solid skyblue;
-  padding: 20px; 
-  width: 100%; 
-  max-width: 400px; /* Limiting max width */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  border: 1px solid skyblue; /* Subtle border */
+  padding: 20px;
+  width: 100%;
+  max-width: 400px; /* Restricts item width */
   text-align: center;
-  color: black; 
-  margin: 0 auto; /* Centering items */
+  color: black;
+  margin: 0 auto; /* Centers the dashboard items */
 }
 
+/* === MAIN CONTENT AREA === */
 .content {
-  padding: 1.5rem; 
-  width: 100%; 
-  max-width: 800px; /* Limiting max width for content */
-  margin: 0 auto; 
-  border: 1px solid #e0e0e0; 
-  border-radius: 8px; 
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 800px; /* Max width for content readability */
+  margin: 0 auto; /* Centers the content */
+  border: 1px solid #e0e0e0; /* Light border for structure */
+  border-radius: 8px; /* Soft, rounded corners */
 }
 
+/* === FORM AND INPUT STYLES === */
 input, select {
-  padding: 12px; 
-  margin: 10px 0; 
-  border: 1px solid #7fc4f2; 
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #7fc4f2;
   border-radius: 15px;
-  width: calc(100% - 24px); /* Ensuring inputs fit well */
-  font-size: 16px; 
+  width: calc(100% - 24px); /* Full width, accounting for padding */
+  font-size: 16px;
 }
 
 input:focus, select:focus {
   border-color: skyblue;
-  outline: none;
+  outline: none; /* Removes default outline on focus */
 }
 
 button {
-  padding: 12px 20px; 
-  font-size: 16px; 
-  border-radius: 10px; 
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 10px;
   border: 1px solid black;
-  background-color: white; 
+  background-color: white;
   color: black;
-  transition: background-color 0.3s, transform 0.2s; 
-  max-width: 150px; 
-  width: auto; 
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transition for button hover */
+  max-width: 150px;
 }
 
 button:hover {
-  background-color: rgb(164, 229, 255); 
-  transform: translateY(-2px); 
+  background-color: rgb(164, 229, 255); /* Light blue on hover */
+  transform: translateY(-2px); /* Subtle hover effect */
 }
 
+/* === RESPONSIVE DESIGN === */
+/* For devices with max-width of 768px */
 @media (max-width: 768px) {
   .navbar {
-      flex-direction: column; 
-      align-items: flex-start; 
-      padding: 1rem; 
-      width: 100%; /* Ensuring navbar uses full width */
-      max-width: 100%; /* Preventing navbar from exceeding screen width */
+      flex-direction: column; /* Stacks items vertically */
+      align-items: flex-start;
+      padding: 1rem;
+      width: 100%;
   }
 
   .navbar a, .navbar button {
-      margin: 5px 0; 
-      width: auto; 
-      max-width: 100%; 
+      margin: 5px 0;
+      max-width: 100%; /* Full width on smaller screens */
   }
 
   .dashboard {
-      flex-direction: column; 
-      border: 1px solid skyblue;
+      flex-direction: column; /* Stacks items vertically */
   }
 
   .dashboard-item {
-      width: 90%; /* Keeping it responsive on smaller screens */
-      padding: 15px; 
+      width: 90%; /* Full width for dashboard items */
+      padding: 15px;
   }
 }
 
+/* For devices with min-width of 769px */
 @media (min-width: 769px) {
   .dashboard {
-      flex-direction: row; 
-      gap: 20px; 
+      flex-direction: row; /* Row layout for larger screens */
+      gap: 20px;
   }
 
   .dashboard-item {
-      max-width: 300px; 
+      max-width: 300px; /* Smaller max width for desktop */
   }
 }
 
+/* === ICON STYLING === */
 #icon {
   width: 40%;
-  margin: -30px; 
+  margin: -30px; /* Adjust icon position */
 }
 
+/* === SPENDING ITEM CARD STYLING === */
 .spending-item {
   background-color: #ffffff;
   border: 1px solid skyblue;
   border-radius: 10px;
   padding: 20px;
-  margin: 15px auto; /* Space between items */
-  max-width: 600px; /* Limit width to look like a blog entry */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  margin: 15px auto;
+  max-width: 600px; /* Limit width for card appearance */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
 }
 
 .spending-item h4 {
@@ -183,7 +187,7 @@ button:hover {
 }
 
 .spending-item h2 {
-  color: rgb(130, 130, 237); /* Accent color for amount */
+  color: rgb(130, 130, 237); /* Highlighted color */
   font-size: 1.5em;
   margin-bottom: 10px;
 }
@@ -212,3 +216,4 @@ button:hover {
   color: #888;
   font-size: 0.9em;
 }
+

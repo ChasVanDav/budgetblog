@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const NewTripForm = () => {
+    // State hooks for form fields, error, and success messages
     const [destinationCountry, setDestinationCountry] = useState('');
     const [destinationCity, setDestinationCity] = useState('');
     const [arrivalDate, setArrivalDate] = useState('');
@@ -10,13 +11,14 @@ const NewTripForm = () => {
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState('');
 
-    const userId = localStorage.getItem('user_id');
+    const userId = localStorage.getItem('user_id'); // Retrieve user ID for submission
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('token'); // Retrieve authorization token
 
         try {
+            // Submit trip data to the server
             const response = await axios.post('/trips', {
                 user_id: userId,
                 destination_country: destinationCountry,
@@ -28,9 +30,9 @@ const NewTripForm = () => {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
-            setSuccessMessage(response.data.message);
+            setSuccessMessage(response.data.message); // Show success message
             setError(null);
-            // Clear form fields
+            // Clear form fields after submission
             setDestinationCountry('');
             setDestinationCity('');
             setArrivalDate('');
@@ -38,7 +40,7 @@ const NewTripForm = () => {
             setStartingBudget('');
         } catch (err) {
             console.error('Failed to create trip:', err);
-            setError('Could not create trip. Please try again.');
+            setError('Could not create trip. Please try again.'); // Show error message
             setSuccessMessage('');
         }
     };
@@ -101,3 +103,4 @@ const NewTripForm = () => {
 };
 
 export default NewTripForm;
+

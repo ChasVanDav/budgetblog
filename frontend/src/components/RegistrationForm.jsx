@@ -3,17 +3,21 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const RegistrationForm = () => {
+  // State variables to store user input for registration fields
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [homeCountry, setHomeCountry] = useState('');
   const [homeCity, setHomeCity] = useState('');
   const [homeCurrency, setHomeCurrency] = useState('');
-  const navigate = useNavigate();
+  
+  const navigate = useNavigate(); // For redirecting after successful registration
 
+  // Form submit handler: posts user data to the server
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
+      // Send a POST request with registration details
       await axios.post('/users/register', {
         username,
         email,
@@ -22,12 +26,13 @@ const RegistrationForm = () => {
         home_city: homeCity,
         home_currency: homeCurrency,
       });
-      navigate('/login');
+      navigate('/login'); // Redirect to login page on success
     } catch (error) {
-      console.error('Registration failed:', error);
+      console.error('Registration failed:', error); // Log any errors
     }
   };
 
+  // Render form with labeled inputs for each registration field
   return (
     <form onSubmit={handleRegister} aria-labelledby="registerHeading">
       <h1 id="registerHeading">Register</h1>

@@ -3,36 +3,43 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 const SpendingContainer = () => {
+  // Get the current trip ID from the URL
   const { tripId } = useParams();
+
+  // State for spending data, error handling, and modal functionality
   const [spendings, setSpendings] = useState([]);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentSpending, setCurrentSpending] = useState(null);
 
+  // Load spendings data when the tripId changes
   useEffect(() => {
     fetchSpendings();
   }, [tripId]);
 
+  // Fetch spendings associated with this trip from the server
   const fetchSpendings = async () => {
     const token = localStorage.getItem('token');
     try {
       const response = await axios.get(`/spendings/${tripId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setSpendings(response.data);
-      setError(null);
+      setSpendings(response.data); // Store spendings in state
+      setError(null); // Clear errors on success
     } catch (error) {
       console.error('Failed to fetch spendings:', error);
       setError('Could not load spending data. Please try again later.');
     }
   };
 
+  // Delete a specific spending and update the list
   const handleDelete = async (spendId) => {
     const token = localStorage.getItem('token');
     try {
       await axios.delete(`/spendings/${spendId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      // Remove deleted item from spendings list
       setSpendings(spendings.filter((spending) => spending.spend_id !== spendId));
       alert('Spending deleted successfully');
     } catch (error) {
@@ -41,23 +48,26 @@ const SpendingContainer = () => {
     }
   };
 
+  // Open modal to edit a specific spending item
   const openEditModal = (spending) => {
     setCurrentSpending(spending);
     setIsModalOpen(true);
   };
 
+  // Close modal without saving changes
   const handleModalClose = () => {
     setIsModalOpen(false);
     setCurrentSpending(null);
   };
 
+  // Save edits to the currently selected spending
   const handleSaveChanges = async () => {
     const token = localStorage.getItem('token');
     try {
       await axios.put(`/spendings/${currentSpending.spend_id}`, currentSpending, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      fetchSpendings();
+      fetchSpendings(); // Refresh list with updated spending
       alert('Spending updated successfully');
       handleModalClose();
     } catch (error) {
@@ -66,6 +76,7 @@ const SpendingContainer = () => {
     }
   };
 
+  // Update the current spending data as user edits in the modal
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setCurrentSpending({ ...currentSpending, [name]: value });
@@ -74,8 +85,10 @@ const SpendingContainer = () => {
   return (
     <div>
       {error ? (
+        // Show error if data fetch failed
         <p className="error">{error}</p>
       ) : (
+        // Display each spending item with options to edit or delete
         spendings.map((spending) => (
           <div key={spending.spend_id} className="spending-item">
             <h4>Category: {spending.category}</h4>
@@ -93,6 +106,7 @@ const SpendingContainer = () => {
         ))
       )}
 
+      {/* Modal to edit a selected spending item */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal">

@@ -13,9 +13,10 @@ const LoginForm = ({ setToken }) => {
       const response = await axios.post('/users/login', { email, password });
       console.log('Login response:', response);
       if (response.data.token) {
+        // Store the token locally and update state
         localStorage.setItem('token', response.data.token);
         setToken(response.data.token);
-        navigate('/');
+        navigate('/'); // Redirect to the homepage after successful login
       } else {
         console.error('No token received');
       }

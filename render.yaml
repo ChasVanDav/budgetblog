@@ -1,21 +1,21 @@
 services:
   - name: budget-backend
-    type: web
-    env: node
-    plan: free  
-    buildCommand: npm install
-    startCommand: npm start
-    envVars:
-        - key: DB_USER
-    value: budgetblog_user  
-  - key: DB_PASSWORD
-    value: WH9XP7JmGdnwrEW60InZ5yAAQdDSPlDy  
-  - key: DB_HOST
-    value: dpg-csd9e89u0jms73b91sv0-a  
-  - key: DB_PORT
-    value: 5432 
-  - key: DB_NAME
-    value: budgetblog
+    type: web   # Backend service type (web app).
+    env: node   # Node.js environment for the backend.
+    plan: free  # Use the free plan for the backend service.
+    buildCommand: npm install  # Command to install dependencies.
+    startCommand: npm start   # Command to start the backend application.
+    envVars:  # Environment variables required for the backend (e.g., DB credentials, API keys).
+      - key: DB_USER
+        value: budgetblog_user
+      - key: DB_PASSWORD
+        value: WH9XP7JmGdnwrEW60InZ5yAAQdDSPlDy
+      - key: DB_HOST
+        value: dpg-csd9e89u0jms73b91sv0-a
+      - key: DB_PORT
+        value: 5432
+      - key: DB_NAME
+        value: budgetblog
       - key: JWT_SECRET
         value: ilovetechtonica
       - key: WEATHER_API_TOKEN
@@ -24,33 +24,33 @@ services:
         value: 83b58b3ac660ad10016ed25199de89
       - key: NODE_ENV
         value: production
-    repo: https://github.com/ChasVanDav/budgetblog 
-    branch: local-setup
-    autoDeploy: true
-    healthCheckPath: /healthcheck  
+    repo: https://github.com/ChasVanDav/budgetblog  # Repository for backend code.
+    branch: local-setup  # Branch to deploy from.
+    autoDeploy: true  # Enable automatic deployment.
+    healthCheckPath: /healthcheck  # Health check endpoint to monitor service status.
     regions:
-      - oregon  
+      - oregon  # Region for hosting the backend service.
     disk:
-      name: data
-      mountPath: /data  
-      sizeGB: 1  
+      name: data  # Name of the disk for storage.
+      mountPath: /data  # Mount path for the storage.
+      sizeGB: 1  # Disk size in GB.
 
   - name: budget-frontend
-    type: static
-    buildCommand: npm install && npm run build
-    staticPublishPath: dist
-    envVars:
+    type: static  # Frontend is a static site.
+    buildCommand: npm install && npm run build  # Install dependencies and build frontend.
+    staticPublishPath: dist  # Path to publish the built static files.
+    envVars:  # Environment variables for the frontend (API URL).
       - key: REACT_APP_API_URL
-        value: https://budget-backend.onrender.com 
-    repo: https://github.com/ChasVanDav/budgetblog 
-    branch: local-setup  
-    autoDeploy: true
+        value: https://budget-backend.onrender.com  # API URL to interact with the backend.
+    repo: https://github.com/ChasVanDav/budgetblog  # Repository for frontend code.
+    branch: local-setup  # Branch to deploy from.
+    autoDeploy: true  # Enable automatic deployment.
     regions:
-      - oregon  
+      - oregon  # Region for hosting the frontend.
 
 databases:
-  - name: budgetblog  
-    engine: postgres
-    plan: free  
-    version: 16 
-    diskSizeGB: 1  
+  - name: budgetblog  # Database for the application.
+    engine: postgres  # Use PostgreSQL as the database engine.
+    plan: free  # Use the free plan for the database.
+    version: 16  # Version of PostgreSQL to use.
+    diskSizeGB: 1  # Database disk size in GB.
