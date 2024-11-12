@@ -12,7 +12,10 @@ const Navbar = ({ setToken, token }) => {
 
     return (
         <nav className="navbar">
-            <Link to="/">Dashboard</Link>
+            
+            <Link to="/">
+            <img src="/bblogo.png" alt="cute cartoon character flying in the clouds" className="navbar-logo" style={{ height: '120px', marginRight: '10px' }} />
+            </Link>
             {token ? (
                 <>
                     <Link to="/trips">My Trips</Link> 

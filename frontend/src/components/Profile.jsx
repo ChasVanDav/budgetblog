@@ -22,11 +22,11 @@ const Profile = () => {
 
   return (
     <div>
-      <img src="/busan.jpg" alt="image of outline of a person" style={{ width: '25%', height: 'auto', marginBottom: '10px' }} />
+      <img src="/blackwomantraveling.jpg" alt="image of a fashionable black woman vacationing at a hot weather destination" style={{ width: '15%', height: 'auto', marginBottom: '10px' }} />
 
       {user ? (
         <div>
-          <h2>{user.username}'s Profile</h2>
+          <h2>{user.username}</h2>
           <p>Email: {user.email}</p>
           <p>Home Country: {user.home_country}</p>
           <p>Home City: {user.home_city}</p>
