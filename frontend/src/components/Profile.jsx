@@ -22,7 +22,7 @@ const Profile = () => {
 
   return (
     <div>
-      <img src="/blackwomantraveling.jpg" alt="image of a fashionable black woman vacationing at a hot weather destination" style={{ width: '15%', height: 'auto', marginBottom: '10px' }} />
+      <img src="/blackwomantraveling.jpg" alt="image of a fashionable black woman vacationing at a hot weather destination" style={{ width: '20%', height: 'auto', marginBottom: '10px' }} />
 
       {user ? (
         <div>
