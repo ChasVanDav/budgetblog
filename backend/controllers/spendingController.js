@@ -29,7 +29,7 @@ export const getSpendingsByBudget = async (req, res) => {
     const budgetId = req.params.budgetId;
 
     try {
-        const result = await db.query('SELECT * FROM spendings WHERE budget_id = $1', [budgetId]);
+        const result = await db.query('SELECT * FROM spendings WHERE budget_id = $1 ORDER BY date DESC', [budgetId]);
 
         if (result.rows.length === 0) {
             return res.status(404).json({ error: 'No spendings found for this budget' });

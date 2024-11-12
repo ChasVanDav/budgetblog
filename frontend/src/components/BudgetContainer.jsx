@@ -36,7 +36,7 @@ const BudgetContainer = () => {
 
   return (
     <div>
-      <img src="/budgetimage.jpg" alt="image of calculator" style={{ width: '30%', height: 'auto', marginBottom: '10px' }} />
+      {/* <img src="/dollars.avf" alt="image of calculator" style={{ width: '30%', height: 'auto', marginBottom: '10px' }} /> */}
       
       {error ? (
         <p className="error">{error}</p>

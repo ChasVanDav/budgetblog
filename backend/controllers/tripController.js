@@ -23,7 +23,7 @@ export const getUserTrips = async (req, res) => {
     const userId = req.userId; 
 
     try {
-        const result = await db.query('SELECT * FROM trips WHERE user_id = $1', [userId]);
+        const result = await db.query('SELECT * FROM trips WHERE user_id = $1 ORDER BY arrival_date DESC', [userId]);
 
         if (result.rows.length === 0) {
             return res.status(404).json({ error: 'No trips found' });

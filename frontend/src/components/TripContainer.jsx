@@ -19,7 +19,7 @@ const TripContainer = () => {
                 const response = await axios.get('/trips', {
                     headers: { Authorization: `Bearer ${token}` },
                 });
-                setTrips(response.data); // Assuming response.data is an array of trips
+                setTrips(response.data);
                 setError(null);
             } catch (error) {
                 console.error('Failed to fetch trips:', error);
@@ -32,7 +32,7 @@ const TripContainer = () => {
 
     return (
         <div>
-                   <img src="/stylized-map-of-world-vector-12563537.jpg" alt="image of world map" style={{ width: '40%', height: 'auto', marginBottom: '10px' }} />
+                   {/* <img src="/stylized-map-of-world-vector-12563537.jpg" alt="image of world map" style={{ width: '40%', height: 'auto', marginBottom: '10px' }} /> */}
             <h1>My Trips</h1>
             {error ? (
                 <p className="error">{error}</p>
