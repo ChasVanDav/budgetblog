@@ -15,6 +15,7 @@ body {
   padding: 10px; 
   max-width: 100%; /* Preventing body container from exceeding screen width */
   overflow-x: hidden; /* Prevent horizontal scrolling */
+  border: 1px solid skyblue;
 }
 
 .navbar {
@@ -24,6 +25,7 @@ body {
   /* justify-content: space-between;  */
   align-items: center; 
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* border: 1px solid skyblue; */
   flex-wrap: wrap; 
   width: 100%; /* Ensuring navbar matches the full width */
   max-width: 100%; /* Preventing navbar from exceeding screen width */
@@ -73,6 +75,7 @@ body {
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid skyblue;
   padding: 20px; 
   width: 100%; 
   max-width: 400px; /* Limiting max width */
@@ -138,6 +141,7 @@ button:hover {
 
   .dashboard {
       flex-direction: column; 
+      border: 1px solid skyblue;
   }
 
   .dashboard-item {
